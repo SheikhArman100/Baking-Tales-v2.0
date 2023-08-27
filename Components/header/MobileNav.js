@@ -1,6 +1,7 @@
 "use client";
 import {
-  mobileNavContainer,
+  mobileLinkContainer,
+  mobileNav,
   navbarItem,
 } from "@/libs/animation/navbar.animation.js";
 import { AnimatePresence, motion } from "framer-motion";
@@ -55,7 +56,7 @@ const MobileNav = () => {
       <AnimatePresence>
       {isActive ? (
           <motion.div
-            variants={mobileNavContainer}
+            variants={mobileNav}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -65,15 +66,15 @@ const MobileNav = () => {
               <MenuIcon isActive={isActive} />
             </button>
 
-            <ul className="absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center gap-y-3">
+            <motion.ul variants={mobileLinkContainer} initial="initial" animate="animate" className="absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center gap-y-3 ">
               {navItems.map((item, index) => {
                 return (
-                  <li key={index} className="text-4xl font-medium">
+                  <li key={index} className="text-5xl font-medium">
                     {item.name}
                   </li>
                 );
               })}
-            </ul>
+            </motion.ul>
           </motion.div>
       ) : null}
       </AnimatePresence>

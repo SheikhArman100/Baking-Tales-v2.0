@@ -35,7 +35,7 @@ const MenuIcon = ({isActive}) => {
       />
       <div
         className={`absolute top-[54%] left-[50%] -translate-x-[50%] -translate-y-[50%]  h-[0.15rem] w-6  transition-transform ${
-          isActive ? "transform -rotate-45  bg-black top-[50%]" : "bg-accentColor"
+          isActive ? "transform -rotate-45  bg-black top-[50%] -translate-y-[0.2rem]" : "bg-accentColor"
         }`}
       />
     </div>
