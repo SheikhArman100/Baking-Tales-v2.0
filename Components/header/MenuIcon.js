@@ -1,12 +1,14 @@
 import React from 'react'
 import { motion } from "framer-motion";
 import { menuBorder, navbarItem } from "@/libs/animation/navbar.animation.js";
+import { Menu, X } from 'lucide-react';
 
 const MenuIcon = ({isActive}) => {
   return (
-    <div className='relative '>
+    <div className='relative  '>
     {/* //circle */}
-      <svg width="80" height="60" viewBox="0 0 80 80">
+      <div className='absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%]'>
+        <svg width="60" height="60" viewBox="0 0 80 80" className=''>
       <motion.circle
         cx="40"
         cy="40"
@@ -24,20 +26,15 @@ const MenuIcon = ({isActive}) => {
       /> 
       </motion.circle>
     </svg>
+      </div>
 
 
       {/* humburgerMenu */}
+      {isActive?<X />:<Menu className=' text-accentColor h-6 w-6 ' />}
+
       
-        <div
-        className={`absolute top-[47%] left-[50%] -translate-x-[50%]  -translate-y-[50%] h-[0.15rem] w-6   transition-transform ${
-          isActive ? "bg-black transform rotate-45 top-[50%] " : "bg-accentColor "
-        }`}
-      />
-      <div
-        className={`absolute top-[54%] left-[50%] -translate-x-[50%] -translate-y-[50%]  h-[0.15rem] w-6  transition-transform ${
-          isActive ? "transform -rotate-45  bg-black top-[50%] -translate-y-[0.2rem]" : "bg-accentColor"
-        }`}
-      />
+      
+        
     </div>
   )
 }

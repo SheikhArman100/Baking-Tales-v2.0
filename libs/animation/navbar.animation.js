@@ -61,12 +61,14 @@ export const mobileNav={
     transition:{
       duration:0.4,
       ease: [0.12, 0, 0.39, 0],
-      delayChildren:0.4,
+      delayChildren:0.3,
+      
     }
   },
   exit:{
     scaleY:0,
     transition:{
+      delay:1.4,
       duration:0.4,
       ease:"easeInOut",
       delayChildren:0.4
@@ -74,35 +76,68 @@ export const mobileNav={
   }
 }
 
-const containerVars = {
-    initial: {
-      transition: {
-        staggerChildren: 0.09,
-        staggerDirection: -1,
-      },
-    },
-    open: {
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.09,
-        staggerDirection: 1,
-      },
-    },
-  };
+export const menuClose={
+  initial:{
+    scale:0
+  },
+  animate:{
+    scale:1,
+    transition:{
+      duration:0.3,
+      ease:"easeInOut"
+    }
+  },
+  exit:{
+    scale:0,
+    transition:{
+      delay:1.1,
+      duration:0.3,
+      ease:"easeInOut"
+    }
+  }
+}
 
-  export const mobileLinkContainer = {
-  initial: {
-    y: "30vh",
-    transition: {
-      duration: 0.5,
-      ease: [0.37, 0, 0.63, 1],
-    },
-  },
-  animate: {
-    y: 0,
-    transition: {
-      ease: [0, 0.55, 0.45, 1],
-      duration: 0.7,
-    },
-  },
-};
+export const linkContainerSlide = {
+    initial: {x: 80,scale:0},
+    animate: {x: 0,scale:1, transition: { ease: [0.76, 0, 0.24, 1], delayChildren: 0.1,staggerChildren:0.1 }},
+    exit:  {x: 80,scale:0, transition: {  delay:1,duration:0.3, ease: [0.76, 0, 0.24, 1], delayChildren: 0.1,staggerChildren:0.1}}
+}
+export const linkSlide = {
+    initial: {y: 80, opacity:0},
+    animate: {y:0, opacity:1,transition:{duration:0.8,ease: [0.76, 0, 0.24, 1]}},
+    exit:{y:80,opacity:0,transition:{duration:0.2,ease: [0.76, 0, 0.24, 1]}}
+    
+}
+
+// const containerVars = {
+//     initial: {
+//       transition: {
+//         staggerChildren: 0.09,
+//         staggerDirection: -1,
+//       },
+//     },
+//     open: {
+//       transition: {
+//         delayChildren: 0.3,
+//         staggerChildren: 0.09,
+//         staggerDirection: 1,
+//       },
+//     },
+//   };
+
+//   export const mobileLinkContainer = {
+//   initial: {
+//     y: "30vh",
+//     transition: {
+//       duration: 0.5,
+//       ease: [0.37, 0, 0.63, 1],
+//     },
+//   },
+//   animate: {
+//     y: 0,
+//     transition: {
+//       ease: [0, 0.55, 0.45, 1],
+//       duration: 0.7,
+//     },
+//   },
+// };

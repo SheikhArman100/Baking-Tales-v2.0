@@ -1,5 +1,8 @@
 "use client";
 import {
+  linkContainerSlide,
+  linkSlide,
+  menuClose,
   mobileLinkContainer,
   mobileNav,
   navbarItem,
@@ -53,25 +56,27 @@ const MobileNav = () => {
           <CartButton />
         </div>
       </div>
-      <AnimatePresence>
+      <AnimatePresence >
       {isActive ? (
           <motion.div
             variants={mobileNav}
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute z-10 origin-top  h-screen w-full top-0 left-0 bg-accentColor flex flex-col  gap-y-6 items-start py-10 px-4"
+            className="absolute z-10 origin-top  h-screen w-full top-0 left-0 bg-accentColor  py-[4rem] px-4 flex flex-col items-start "
           >
-            <button className="z-10" onClick={() => setIsActive(!isActive)}>
+            <motion.button variants={menuClose} className="ml-6" onClick={() => setIsActive(!isActive)}>
               <MenuIcon isActive={isActive} />
-            </button>
+            </motion.button>
 
-            <motion.ul variants={mobileLinkContainer} initial="initial" animate="animate" className="absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center gap-y-3 ">
+            <motion.ul variants={linkContainerSlide}  className="w-full flex-1 flex flex-col items-center justify-center gap-y-4 text-center">
               {navItems.map((item, index) => {
                 return (
-                  <li key={index} className="text-5xl font-medium">
+                  <div key={index} className="overflow-hidden  w-full py-2" >
+                    <motion.li variants={linkSlide} className="text-5xl font-medium  ">
                     {item.name}
-                  </li>
+                  </motion.li>
+                  </div>
                 );
               })}
             </motion.ul>
