@@ -109,35 +109,44 @@ export const linkSlide = {
     
 }
 
-// const containerVars = {
-//     initial: {
-//       transition: {
-//         staggerChildren: 0.09,
-//         staggerDirection: -1,
-//       },
-//     },
-//     open: {
-//       transition: {
-//         delayChildren: 0.3,
-//         staggerChildren: 0.09,
-//         staggerDirection: 1,
-//       },
-//     },
-//   };
+//nav-left
+export const titleAnimation = {
+  rest: {
+    transition: {
+      staggerChildren: 0.01,
+    },
+  },
+  hover: {
+    transition: {
+      staggerChildren: 0.01,
+    },
+  },
+};
 
-//   export const mobileLinkContainer = {
-//   initial: {
-//     y: "30vh",
-//     transition: {
-//       duration: 0.5,
-//       ease: [0.37, 0, 0.63, 1],
-//     },
-//   },
-//   animate: {
-//     y: 0,
-//     transition: {
-//       ease: [0, 0.55, 0.45, 1],
-//       duration: 0.7,
-//     },
-//   },
-// };
+export const letterAnimation = {
+  rest: {
+    y: 0,
+  },
+  hover: {
+    y: -30,
+    transition: {
+      duration: 0.3,
+      ease: [0.6, 0.01, 0.05, 0.95],
+      type: "tween",
+    },
+  },
+};
+
+export const letterAnimationTwo = {
+  rest: {
+    y: 30,
+  },
+  hover: {
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: [0.6, 0.01, 0.05, 0.95],
+      type: "tween",
+    },
+  },
+};

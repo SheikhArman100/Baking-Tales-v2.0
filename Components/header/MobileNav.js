@@ -11,9 +11,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import CartButton from "./CartButton.js";
 import Logo from "./Logo.js";
-import MenuIcon from "./MenuIcon.js";
-
+import MenuIcon from "./IconCircleBorder.js";
+import { Menu, X } from "lucide-react";
+import IconCircleBorder from "./IconCircleBorder.js";
 const navItems = [
+   {
+    name: "Home",
+    href: "/",
+  },
   {
     name: "About us",
     href: "/about",
@@ -25,28 +30,27 @@ const navItems = [
   {
     name: "Blogs",
     href: "/blogs",
-  },
-  {
-    name: "Contact us",
-    href: "/contact",
-  },
-];
+  }
+]
 
 const MobileNav = () => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <section className="w-full mt-2 ">
+    <section className="w-full mt-2 md:hidden">
       <div className=" grid grid-cols-3 mt-">
         <div className="col-span-1 flex items-center justify-center">
           <motion.button
             onClick={() => setIsActive(!isActive)}
-            className=""
+            className="z-30"
             variants={navbarItem}
             initial="initial"
             animate="animate"
           >
-            <MenuIcon isActive={isActive} />
+            <IconCircleBorder>
+              {/* humburgerMenu */}
+             {isActive?<X />:<Menu className=' text-accentColor h-6 w-6 ' />}
+            </IconCircleBorder>
           </motion.button>
         </div>
         <div className=" col-span-1 flex items-center justify-center ">
@@ -63,11 +67,9 @@ const MobileNav = () => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute z-10 origin-top  h-screen w-full top-0 left-0 bg-accentColor  py-[4rem] px-4 flex flex-col items-start "
+            className="absolute z-20 origin-top  h-screen w-full top-0 left-0 bg-accentColor  py-[4rem] px-4 flex flex-col items-start "
           >
-            <motion.button variants={menuClose} className="ml-6" onClick={() => setIsActive(!isActive)}>
-              <MenuIcon isActive={isActive} />
-            </motion.button>
+           
 
             <motion.ul variants={linkContainerSlide}  className="w-full flex-1 flex flex-col items-center justify-center gap-y-4 text-center">
               {navItems.map((item, index) => {
