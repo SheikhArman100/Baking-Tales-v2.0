@@ -28,7 +28,7 @@ const HomeContainer = ({children}) => {
       
       <motion.div style={{
         scale
-      }} className="relative h-screen  mask [mask-position:center_center,center_top_80%] md:[mask-position:center_center,center_top_30%] bg-bgColor  w-full flex flex-col md:flex-row md:items-start md:justify-between items-center px-6 md:px-[5rem] py-8" >
+      }} className="relative h-screen  mask [mask-position:center_center,center_top_12.5rem] md:[mask-position:center_center,center_top_30%] bg-bgColor  w-full flex flex-col md:flex-row md:items-start md:justify-between items-center px-6 md:px-[3rem] lg:px-[4.5rem] py-8 md:py-[5rem]" >
         <div className="flex flex-col items-center md:items-start md:gap-y-3 md:mt-[4rem]">
           <div className="flex items-center justify-center gap-x-1">
             <Star fill="#eab308" stroke="none" className="h-4 w-4" />
@@ -37,12 +37,12 @@ const HomeContainer = ({children}) => {
             </p>
             <Star fill="#eab308" stroke="none" className="h-4 w-4" />
           </div>
-          <p className="text-textColor text-3xl md:text-4xl  md:text-left lg:text-5xl xl:text-6xl font-semibold text-center">
+          <p className="text-textColor text-3xl sm:text-4xl  md:text-left lg:text-5xl xl:text-6xl font-semibold text-center">
             We are <br className="hidden md:block"/> baking for <br /> your pleasure
           </p>
           <Button name="Shop now" />
         </div>
-        <div className="absolute top-[60%] left-[50%] -translate-x-[50%] -translate-y-[45%] md:top-[40%] md:-translate-y-[50%] flex flex-col  items-center justify-center ">
+        {/* <div className=" ">
           <svg
             
             viewBox="15 -10 228 40"
@@ -64,7 +64,7 @@ const HomeContainer = ({children}) => {
 
           <div  className="w-48  aspect-[4/7] rounded-full  "/>
             
-        </div>
+        </div> */}
         <div className="hidden md:flex flex-col items-center gap-y-2 md:mt-[4rem] mr-4">
           <p className="text-textColor text-center text-sm font-semibold">Enjoy your <br/> indulgent afternoon tea <br/> in te comfort of your home <br/> wih the delicious cake</p>
           <div className="h-32 w-28  rounded-t-lg rounded-bl-lg">
