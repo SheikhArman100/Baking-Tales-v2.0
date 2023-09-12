@@ -9,12 +9,12 @@
     @apply m-0 box-border p-0;
   }
   html {
-    @apply overflow-x-hidden  focus-within:scroll-smooth;
+    @apply overflow-x-hidden  focus-within:scroll-smooth ;
   }
 
   /* avoid vw or screen to reduce overflow */
   body {
-    @apply w-full h-full mx-auto;
+    @apply w-full h-full max-w-[1440px] mx-auto;
   }
   ul,
   ol {

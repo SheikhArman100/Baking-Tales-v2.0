@@ -2,7 +2,8 @@
 import Header from "@/Components/header/Header.js";
 import Loader from "@/Components/Loader.js";
 import { useState } from "react";
-import HomeContainer from "./HomeContainer";
+import HomeContainer from "./components/HomeContainer";
+import Categories from "@/app/components/Categories";
 
 
 export default function Home() {
@@ -14,7 +15,9 @@ export default function Home() {
       ) : (
         <div className="min-h-screen w-full flx flex-col bg-bgColor ">
           <Header />
-          <HomeContainer/>
+          <HomeContainer>
+            <Categories/>
+          </HomeContainer>
             
            
         </div>

@@ -10,7 +10,8 @@ module.exports = {
       colors:{
         bgColor:"rgb(38, 4, 3)",
         textColor:"white",
-        accentColor:"rgb(255, 201, 153)"
+        accentColor:"rgb(255, 201, 153)",
+        accentColor2:"rgba(250,243,225,1)"
       }
     },
   },
