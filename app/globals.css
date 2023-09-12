@@ -39,6 +39,10 @@
   /* reuseable components */
 }
 @layer utilities {
+  .font2{
+    font-family: var(--font-dancingScript);
+    font-weight: 200;
+  }
   .mask{
     mask-image: linear-gradient(black,black),url(../public/assets/mask.svg);
     mask-composite: exclude;

@@ -1,8 +1,18 @@
 
-import { Inter } from 'next/font/google'
+import { Dancing_Script, Inter, Italiana } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const dancingScript=Dancing_Script({
+  subsets:["latin"],
+  weight:"400",
+  variable:"--font-dancingScript"
+})
+const italiana=Italiana({
+  subsets:["latin"],
+  weight:"400",
+  variable:"--font-italiana"
+
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${dancingScript.variable} ${italiana.className}`}>
         {children}
       </body>
     </html>

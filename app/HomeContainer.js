@@ -28,7 +28,7 @@ const HomeContainer = ({children}) => {
       
       <motion.div style={{
         scale
-      }} className="relative h-screen  mask [mask-position:center_center,center_top_12.5rem] md:[mask-position:center_center,center_top_30%] bg-bgColor  w-full flex flex-col md:flex-row md:items-start md:justify-between items-center px-6 md:px-[3rem] lg:px-[4.5rem] py-8 md:py-[5rem]" >
+      }} className="relative h-screen  mask [mask-position:center_center,center_top_12.5rem] md:[mask-position:center_center,center_top_30%] bg-bgColor  w-full flex flex-col md:flex-row md:items-start md:justify-between items-center px-6 md:px-[3rem] lg:px-[4.5rem] xl:px-[6rem] py-8 md:py-[5rem]" >
         <div className="flex flex-col items-center md:items-start md:gap-y-3 md:mt-[4rem]">
           <div className="flex items-center justify-center gap-x-1">
             <Star fill="#eab308" stroke="none" className="h-4 w-4" />
@@ -81,7 +81,7 @@ const HomeContainer = ({children}) => {
         <Image src={image1} alt="hero image 1" priority className={`w-full h-full  object-cover `}/>
         <div className="h-screen w-full absolute top-[50%] left-0 bg-black opacity-50"/>
         <div className="h-screen w-full absolute top-[50%] left-0  text-white flex flex-col items-center px-6 md:px-[5rem] py-8  ">
-          <h2 className="text-3xl">Our Services</h2>
+          <h2 className="text-3xl font2">Our Services</h2>
         </div>
       </div>
      {children}
