@@ -1,7 +1,7 @@
 "use client"
 import Button from "@/Components/Button";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { Cake, Gift, Star, Truck } from "lucide-react";
+import { ArrowRight, Cake, Gift, Star, Truck } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 import image1 from "@/public/assets/pexels-carsten-vollrath-11543451.jpg";
@@ -40,7 +40,13 @@ const HomeContainer = ({children}) => {
           <p className="text-textColor text-3xl sm:text-4xl  md:text-left lg:text-5xl xl:text-6xl font-semibold text-center">
             We are <br className="hidden md:block"/> baking for <br /> your pleasure
           </p>
-          <Button name="Shop now" />
+          <Button>
+            <Button.Border1/>
+            <Button.Border2/>
+            <Button.Title>Shop now</Button.Title>
+            <Button.Icon><ArrowRight className="stroke-white"/></Button.Icon>
+            
+          </Button>
         </div>
         {/* <div className=" ">
           <svg
