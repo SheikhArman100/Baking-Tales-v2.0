@@ -6,6 +6,8 @@ import HomeContainer from "./components/HomeContainer";
 import Categories from "@/app/components/Categories";
 import FeaturedItem from "./components/FeaturedItem";
 import AboutUs from "./components/AboutUs";
+import Journal from "./components/Journal";
+import Services from "./components/Services";
 
 
 export default function Home() {
@@ -21,6 +23,8 @@ export default function Home() {
             <FeaturedItem/>
             <Categories/>
             <AboutUs/>
+            <Journal/>
+            <Services/>
           </HomeContainer>
             
            

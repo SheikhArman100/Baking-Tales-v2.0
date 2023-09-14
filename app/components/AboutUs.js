@@ -22,11 +22,11 @@ const AboutUs = () => {
             <p className="text-textColor text-[0.8rem] font-medium">About Us</p>
             <Star fill="#eab308" stroke="none" className="h-4 w-4" />
           </div>
-          <div className=" relative flex flex-col items-center justify-center text-center">
+          <div className=" relative flex flex-col items-center justify-center text-center px-2">
            <AnimatedAboutUs paragraph="Here at the Baking Tales we believe that everyone deserves to get the good things in life. So we have created some of the most beautiful & scrumptious cakes, cupcakes, jar cakes and different shapes of chocolate just for you to enjoy. We produce cakes, cupcakes and other baked goods from the finest carefully sourced ingredients" className="text-xl sm:text-2xl lg:text-3xl text-center text-white"/>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-center text-accentColor mt-2 font2">
-              We hope to see you all soon
-            </h3>
+            <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-center text-accentColor mt-2 font2">
+              <AnimatedAboutUs paragraph="We hope to see you all soon"/>
+            </div>
           </div>
           
         </div>

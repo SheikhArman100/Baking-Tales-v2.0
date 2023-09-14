@@ -17,7 +17,8 @@ export const paragraphAnimation={
         opacity:1 ,
         
         transition:{
-            delay:0.003 * index,
+            type:"tween",
+            delay:0.015 * index,
             ease:"linear"
 
         } 
