@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './Components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
@@ -11,7 +11,7 @@ module.exports = {
         bgColor:"rgb(38, 4, 3)",
         textColor:"white",
         accentColor:"rgb(255, 201, 153)",
-        accentColor2:"rgba(250,243,225,1)"
+        accentColor2:"rgba(250,243,225,1)",
       }
     },
   },
