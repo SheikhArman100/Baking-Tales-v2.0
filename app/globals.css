@@ -14,7 +14,7 @@
 
   /* avoid vw or screen to reduce overflow */
   body {
-    @apply w-full h-full max-w-[1440px] mx-auto;
+    @apply w-full h-full max-w-[1600px] mx-auto;
   }
   ul,
   ol {
