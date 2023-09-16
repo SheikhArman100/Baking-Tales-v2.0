@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { motion } from "framer-motion";
 import { logoText, logoTextBorder } from "@/libs/animation/navbar.animation.js";

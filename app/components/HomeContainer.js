@@ -4,7 +4,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Cake, Gift, Star, Truck } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
-import image1 from "@/public/assets/pexels-carsten-vollrath-11543451.jpg";
+import image1 from "@/public/assets/homeImage1.jpg";
 import image2 from "@/public/assets/pexels-jonathan-borba-9816191.jpg";
 import Logo from "@/Components/header/Logo";
 import SectionTitle from "@/Components/SectionTitle";
@@ -30,9 +30,9 @@ const HomeContainer = ({ children }) => {
           style={{
             scale,
           }}
-          className="relative h-screen  mask [mask-position:center_center,center_top_12.5rem] md:[mask-position:center_center,center_top_30%] bg-bgColor  w-full flex flex-col md:flex-row md:items-start md:justify-between items-center px-6 md:px-[3rem] lg:px-[4.5rem] xl:px-[6rem] py-8 md:py-[5rem]"
+          className="relative h-screen  mask [mask-position:center_center,center_top_12.5rem] md:[mask-position:center_center,center_top_30%] bg-bgColor  w-full flex flex-col md:flex-row md:items-start md:justify-between md:gap-x-[16rem] items-center px-6 md:px-[3rem] lg:px-[4.5rem] xl:px-[6rem] py-8 md:py-[5rem]"
         >
-          <div className="flex flex-col items-center md:items-start md:gap-y-3 md:mt-[4rem]">
+          <div className="h-full w-full md:w-1/2  flex flex-col items-center md:items-start md:gap-y-3 md:mt-[4rem]">
             <div className="flex items-center justify-center gap-x-1">
               <Star fill="#eab308" stroke="none" className="h-4 w-4" />
               <p className="text-textColor text-[0.7rem] font-medium">
@@ -76,17 +76,33 @@ const HomeContainer = ({ children }) => {
           <div  className="w-48  aspect-[4/7] rounded-full  "/>
             
         </div> */}
-          <div className="hidden md:flex flex-col items-center gap-y-2 md:mt-[4rem] mr-4">
-            <p className="text-textColor text-center text-sm font-semibold">
-              Enjoy your <br /> indulgent afternoon tea <br /> in te comfort of
-              your home <br /> wih the delicious cake
+          <div className="relative hidden md:flex flex-col items-center gap-y-2 md:mt-[4rem] mr-4  md:w-[50%] h-full  ">
+            <p className="text-textColor text-center text-base font-semibold md:px-4 lg:px-[4rem] xl:px-[6rem]">
+              Enjoy your indulgent afternoon tea in te comfort of your home wih
+              the delicious cake
             </p>
-            <div className="h-32 w-28  rounded-t-lg rounded-bl-lg">
-              <Image
-                src={image2}
-                alt="home image 2"
-                className="object-cover w-full h-full rounded-t-lg rounded-bl-lg "
-              />
+            <div className="w-full h-full flex flex-col item-center mt-3">
+              <SectionTitle title="New Items" />
+              <div className="relative flex items-center justify-center mt-2 ">
+                <div className="relative h-32 aspect-square  rounded-full left-[10%]">
+                  <Image
+                    src={image2}
+                    alt="home image 2"
+                    fill
+                    className="object-cover w-full h-full rounded-full "
+                    placeholder="blur"
+                  />
+                </div>
+                <div className="relative h-32 aspect-square  rounded-full right-[10%]">
+                  <Image
+                    src={image2}
+                    alt="home image 2"
+                    fill
+                    className="object-cover w-full h-full rounded-full "
+                    placeholder="blur"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -97,7 +113,9 @@ const HomeContainer = ({ children }) => {
         <Image
           src={image1}
           alt="hero image 1"
+          fill
           priority
+          // placeholder="blur"
           className={`w-full h-full  object-cover `}
         />
         <div className="h-screen w-full absolute top-[50%] left-0 bg-black opacity-70" />
@@ -107,7 +125,9 @@ const HomeContainer = ({ children }) => {
               <Logo />
               <div className="mt-4">
                 <SectionTitle title="Exclusive" />
-              <h4 className="text-2xl text-center">Our Fall Product Collection is here</h4>
+                <h4 className="text-2xl text-center">
+                  Our Fall Product Collection is here
+                </h4>
               </div>
               <Button className="z-10">
                 <Button.Border1 />

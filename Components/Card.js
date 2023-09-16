@@ -27,14 +27,15 @@ const Card = () => {
             className="object-cover w-full h-full"
           />
         </div>
-        <div className="w-full h-full absolute top-0 left-0 hidden group-hover/card:block transition-all  ">
+        <div className="w-full h-full absolute top-0 left-0 scale-0 group-hover/card:scale-100 transition-all duration-[0.4s]  ">
           <Image
             src={cake1}
             alt="card image hover"
             className="w-full h-full object-cover"
+            placeholder="blur"
           />
         </div>
-        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 hidden group-hover/card:block transition-all">
+        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 scale-0 group-hover/card:scale-100 transition-all delay-200">
           <Button>
             <Button.Border1 className="bg-accentColor2 border-[0.1px]  border-stone-500" />
             <Button.Border2 className="bg-accentColor2 border-[0.1px]   border-gray-500" />

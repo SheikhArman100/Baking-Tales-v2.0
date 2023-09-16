@@ -1,15 +1,19 @@
-import Image from "next/image";
+
 import React from "react";
 import SectionTitle from "./SectionTitle";
+import RemoteImage from "./RemoteImage.js";
 
 const JournalCard = ({ image, title }) => {
   return (
     <div className="flex flex-col items-center gap-y-2">
-      <Image
+      <div className="relative w-full h-52 lg:h-72 object-cover scale-95 hover:scale-100 transition-all duration-300 rounded ">
+        <RemoteImage
         src={image}
         alt="Journal card image"
-        className="w-full h-52 lg:h-72 object-cover scale-95 hover:scale-100 transition-all duration-300 rounded "
+        className="rounded "
       />
+
+      </div>
 
       <div>
         {/* date */}
