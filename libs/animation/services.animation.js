@@ -1,9 +1,11 @@
 export const iconAnimation = {
   initial: {
-    scale: 0,
+    opacity:0,
+    pathLength: 0,
   },
   whileInView: {
-    scale: 1,
+    opacity:1,
+    pathLength: 1,
     transition: {
       duration: 0.5,
       ease: "easeInOut",

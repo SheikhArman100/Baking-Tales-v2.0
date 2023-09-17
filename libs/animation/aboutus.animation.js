@@ -1,13 +1,13 @@
 import { easeInOut } from "framer-motion"
 
-export const paragraphAnimation={
-    whileInView:{
-        transition:{
-            delayChildren:1,
-            staggerChildren:0.3
-        }
-    }
-}
+// export const paragraphAnimation={
+//     whileInView:{
+//         transition:{
+//             delayChildren:1,
+//             staggerChildren:0.3
+//         }
+//     }
+// }
  export const letterAnimation={
     initial:{
         opacity:0.1,
@@ -24,10 +24,10 @@ export const paragraphAnimation={
         } 
     }),
      exit:(index)=>({
-        opacity:1 ,
+        opacity:0 ,
         
         transition:{
-            delay:0.005 * index,
+            delay:0.015 * index,
             ease:"easeInOut"
 
         } 
