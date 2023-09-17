@@ -1,13 +1,15 @@
 "use client";
 import Button from "@/Components/Button";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, Cake, Gift, Star, Truck } from "lucide-react";
+import { ArrowRight, Cake, Facebook, Gift, Instagram, Star, Truck, Twitter } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 import image1 from "@/public/assets/homeImage1.jpg";
 import image2 from "@/public/assets/pexels-jonathan-borba-9816191.jpg";
 import Logo from "@/Components/header/Logo";
 import SectionTitle from "@/Components/SectionTitle";
+import FramerMagnetic from "@/Components/FramerMagnetic";
+import image3 from "../../public/assets/frank-zhang-53nLF9woXE0-unsplash.jpg"
 
 const HomeContainer = ({ children }) => {
   const heroRef = useRef(null);
@@ -77,31 +79,51 @@ const HomeContainer = ({ children }) => {
             
         </div> */}
           <div className="relative hidden md:flex flex-col items-center gap-y-2 md:mt-[4rem] mr-4  md:w-[50%] h-full  ">
-            <p className="text-textColor text-center text-base font-semibold md:px-4 lg:px-[4rem] xl:px-[6rem]">
+            <p className="text-textColor text-center text-base font-semibold md:px-[2rem]  lg:px-[3rem] xl:px-[4rem]">
               Enjoy your indulgent afternoon tea in te comfort of your home wih
               the delicious cake
             </p>
-            <div className="w-full h-full flex flex-col item-center mt-3">
+            <div className="w-full  flex flex-col item-center mt-3">
               <SectionTitle title="New Items" />
               <div className="relative flex items-center justify-center mt-2 ">
-                <div className="relative h-32 aspect-square  rounded-full left-[10%]">
+                <div className="relative md:h-28 lg:h-32 aspect-square  rounded-full left-[5%]">
                   <Image
                     src={image2}
                     alt="home image 2"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover w-full h-full rounded-full "
                     placeholder="blur"
                   />
                 </div>
-                <div className="relative h-32 aspect-square  rounded-full right-[10%]">
+                <div className="relative md:h-28 lg:h-32 aspect-square  rounded-full">
                   <Image
-                    src={image2}
-                    alt="home image 2"
+                    src={image3}
+                    alt="home image 3"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover w-full h-full rounded-full "
                     placeholder="blur"
                   />
                 </div>
+              </div>
+            </div>
+            <div className="w-full flex justify-center flex-col gap-x-4 items-center mt-4">
+              <h5 className="text-textColor text-sm">Follow us:</h5>
+              <div className="flex   items-center justify-center  ">
+                <FramerMagnetic>
+                  <Facebook strokeWidth="1" className="fill-accentColor"/>
+                </FramerMagnetic>
+
+                <FramerMagnetic>
+                 <Instagram strokeWidth="1" className="fill-accentColor"/>
+                </FramerMagnetic>
+
+                <FramerMagnetic>
+                 <Twitter  strokeWidth="1" className="fill-accentColor"/>
+                </FramerMagnetic>
+
+                
               </div>
             </div>
           </div>
@@ -109,15 +131,16 @@ const HomeContainer = ({ children }) => {
       </div>
 
       {/* hero section ends */}
-      <div className="h-[200vh] mt-[-200vh] relative   ">
-        <Image
+      <div className="h-[200vh] mt-[-200vh] relative ">
+       
+         <Image
           src={image1}
           alt="hero image 1"
-          fill
           priority
-          // placeholder="blur"
-          className={`w-full h-full  object-cover `}
+          placeholder="blur"
+          className="w-full h-full  object-cover"
         />
+      
         <div className="h-screen w-full absolute top-[50%] left-0 bg-black opacity-70" />
         <div className="h-screen w-full absolute top-[50%] left-0  text-white flex flex-col items-center px-6 md:px-[5rem] py-8  ">
           <div className="h-[90%] aspect-[1.2/2] bg-black p-2">
