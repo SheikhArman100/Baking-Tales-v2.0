@@ -7,7 +7,7 @@ import { useRef } from "react";
 
 const Services = () => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef,{once: true, margin: "75%"});
+  const isInView = useInView(containerRef);
   return (
     <div className="h-full w-full  text-white flex flex-col items-center px-6 md:px-[5rem] py-8 bg-black ">
       <SectionTitle title="Services" />
