@@ -10,7 +10,7 @@ const HomeSection = ({children}) => {
       {isLoading ? (
         <Loader setIsLoading={setIsLoading} />
       ) : (
-        <div className="min-h-screen w-full flx flex-col bg-bgColor ">
+        <div className="min-h-screen relative w-full flx flex-col bg-bgColor ">
           {children}
             
            

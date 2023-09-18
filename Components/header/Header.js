@@ -4,7 +4,7 @@ import NavBar from "./NavBar.js";
 
 const Header = () => {
   return (
-    <div className="flex flex-col">
+    <div className="md:absolute left-0 top-0 w-full flex flex-col z-50">
       <Marquee />
       <MobileNav/>
       <NavBar/>

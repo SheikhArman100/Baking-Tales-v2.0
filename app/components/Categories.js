@@ -1,11 +1,13 @@
 import Card from "@/Components/Card";
 import React from "react";
-import categoryImage from "@/public/assets/categoryImage.jpg";
-import Image from "next/image";
-import { ArrowRight, Star } from "lucide-react";
+
+
+import { ArrowRight, Plus, Star } from "lucide-react";
 import Button from "@/Components/Button";
 import LocalImage from "@/Components/LocalImage.js";
-
+import cakeIcon from "@/public/assets/cakeIcon.svg"
+import cakeBgRemove from "@/public/assets/cake1_bgRemove.png";
+import cake1 from "@/public/assets/cake1.jpg"
 const Categories = () => {
   return (
     // gap-y is the half of card height +4
@@ -21,7 +23,26 @@ const Categories = () => {
      
        
       <div className="absolute top-[40%] md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <Card />
+        <Card>
+            <Card.CardContainer>
+              <Card.CategoryIcon icon={cakeIcon} />
+              <Card.CardInfo title="Birthday Cake" price="99.9" />
+              <Card.BgRemoveImage bgRemoveImage={cakeBgRemove} />
+              <Card.CardImage cardImage={cake1}/>
+              <Card.CardButtonWrapper>
+                <Button>
+                  <Button.Border1 className="bg-accentColor2 border-[0.1px]  border-stone-500" />
+                  <Button.Border2 className="bg-accentColor2 border-[0.1px]   border-gray-500" />
+                  <Button.Title className="text-black font-medium">
+                    View Details
+                  </Button.Title>
+                  <Button.Icon className=" ">
+                    <Plus strokeWidth="1" className="stroke-black h-4 w-4 " />
+                  </Button.Icon>
+                </Button>
+              </Card.CardButtonWrapper>
+            </Card.CardContainer>
+          </Card>
       </div>
       <div className="h-full w-full md:w-[50%]  flex flex-col items-center justify-center">
         <div className="flex items-center justify-center gap-x-1">

@@ -32,9 +32,9 @@ const HomeContainer = ({ children }) => {
           style={{
             scale,
           }}
-          className="relative h-screen  mask [mask-position:center_center,center_top_12.5rem] md:[mask-position:center_center,center_top_30%] bg-bgColor  w-full flex flex-col md:flex-row md:items-start md:justify-between md:gap-x-[16rem] items-center px-6 md:px-[3rem] lg:px-[4.5rem] xl:px-[6rem] py-8 md:py-[5rem]"
+          className="relative h-screen w-full mask [mask-position:center_center,center_top_12rem] md:[mask-position:center_center,center_top_65%] xl:[mask-position:center_center,center_top_71%]   bg-bgColor  flex flex-col md:flex-row md:items-center md:justify-between  items-center px-8 md:px-12 py-6 gap-x-[252px]"
         >
-          <div className="h-full w-full md:w-1/2  flex flex-col items-center md:items-start md:gap-y-3 md:mt-[4rem]">
+          <div className=" w-full md:w-1/2  flex flex-col items-center md:items-start md:gap-y-3 md:mt-[4rem]">
             <div className="flex items-center justify-center gap-x-1">
               <Star fill="#eab308" stroke="none" className="h-4 w-4" />
               <p className="text-textColor text-[0.7rem] font-medium">
@@ -46,7 +46,7 @@ const HomeContainer = ({ children }) => {
               We are <br className="hidden md:block" /> baking for <br /> your
               pleasure
             </p>
-            <Button>
+            <Button className="">
               <Button.Border1 />
               <Button.Border2 />
               <Button.Title>Shop now</Button.Title>
@@ -55,7 +55,7 @@ const HomeContainer = ({ children }) => {
               </Button.Icon>
             </Button>
           </div>
-          {/* <div className=" ">
+          <div className="hidden md:block md:absolute md:top-[55%] md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
           <svg
             
             viewBox="15 -10 228 40"
@@ -69,21 +69,22 @@ const HomeContainer = ({ children }) => {
               fill="transparent"
             />
             <text>
-              <textPath id="text-path" href="#curve" startOffset="0" className="fill-accentColor text-4xl font-bold">
+              <textPath id="text-path" href="#curve" startOffset="25" className="fill-accentColor text-4xl font-bold">
                 Happiness Starts Here
               </textPath>
             </text>
           </svg>
 
-          <div  className="w-48  aspect-[4/7] rounded-full  "/>
+          <div  className="h-[380px] w-[252px] rounded-full  "/>
             
-        </div> */}
-          <div className="relative hidden md:flex flex-col items-center gap-y-2 md:mt-[4rem] mr-4  md:w-[50%] h-full  ">
-            <p className="text-textColor text-center text-base font-semibold md:px-[2rem]  lg:px-[3rem] xl:px-[4rem]">
+        </div>
+          <div className=" hidden md:flex flex-col items-end gap-y-2 md:mt-[4rem]  md:w-[50%]   ">
+            
+            <p className=" text-textColor text-center text-base font-semibold md:px-[2rem]  lg:px-[3rem] xl:px-[6rem]">
               Enjoy your indulgent afternoon tea in te comfort of your home wih
               the delicious cake
             </p>
-            <div className="w-full  flex flex-col item-center mt-3">
+            <div className="w-full  flex flex-col item-end mt-3">
               <SectionTitle title="New Items" />
               <div className="relative flex items-center justify-center mt-2 ">
                 <div className="relative md:h-28 lg:h-32 aspect-square  rounded-full left-[5%]">
@@ -126,12 +127,13 @@ const HomeContainer = ({ children }) => {
                 
               </div>
             </div>
+            
           </div>
         </motion.div>
       </div>
 
       {/* hero section ends */}
-      <div className="h-[200vh] mt-[-200vh] relative ">
+      <div className="h-[200vh] mt-[-190vh] relative ">
        
          <Image
           src={image1}

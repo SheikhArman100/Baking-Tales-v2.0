@@ -19,6 +19,9 @@ const AnimatedAboutUs = ({paragraph,className}) => {
           variants={letterAnimation}
           initial="initial"
           whileInView="whileInView"
+          viewport={{
+            once:true
+          }}
           custom={index}
         >
           {letter === " " ? "\u00A0" : letter}
