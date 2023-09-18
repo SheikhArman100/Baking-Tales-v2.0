@@ -78,7 +78,7 @@ const HomeContainer = ({ children }) => {
           <div  className="h-[380px] w-[252px] rounded-full  "/>
             
         </div>
-          <div className=" hidden md:flex flex-col items-end gap-y-2 md:mt-[4rem]  md:w-[50%]   ">
+          <div className=" hidden md:flex flex-col items-end gap-y-2 md:mt-[5rem]  md:w-[50%]   ">
             
             <p className=" text-textColor text-center text-base font-semibold md:px-[2rem]  lg:px-[3rem] xl:px-[6rem]">
               Enjoy your indulgent afternoon tea in te comfort of your home wih
