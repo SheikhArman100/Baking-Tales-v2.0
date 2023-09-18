@@ -14,7 +14,6 @@ export default async function LocalImage({src,className,alt,priority}) {
       className={twMerge(" w-full h-full",className)}
       fill
       alt={alt}
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       placeholder="blur"
       blurDataURL={base64}
       priority={!!priority}

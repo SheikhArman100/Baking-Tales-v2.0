@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="">
       <HomeSection>
-        <GrainOverlay/>
+        {/* <GrainOverlay/> */}
         <Header />
           <HomeContainer>
             <FeaturedItem/>

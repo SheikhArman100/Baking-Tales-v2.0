@@ -60,7 +60,7 @@
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: repeating-linear-gradient(90deg, #0002 0 2px, transparent 2px 35vmin);
+	background: repeating-linear-gradient(90deg, #0002 0 2px, transparent 2px 40vmin);
 	animation: vlines 3s steps(1) infinite;
 }
 

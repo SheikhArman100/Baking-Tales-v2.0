@@ -12,7 +12,7 @@ const Categories = () => {
   return (
     // gap-y is the half of card height +4
     <section className="relative w-full h-screen flex flex-col md:flex-row gap-y-16">
-      <div className="relative w-full h-[50%] md:h-full md:w-1/2">
+      <div className="relative w-full h-[50%] md:h-full bg-blue-400 md:w-1/2">
         <LocalImage
         src="/assets/categoryImage.jpg"
         alt="categories section image"
@@ -44,7 +44,7 @@ const Categories = () => {
             </Card.CardContainer>
           </Card>
       </div>
-      <div className="h-full w-full md:w-[50%]  flex flex-col items-center justify-center">
+      <div className=" w-full md:w-[50%]  flex flex-col items-center justify-center">
         <div className="flex items-center justify-center gap-x-1">
           <Star fill="#eab308" stroke="none" className="h-4 w-4" />
           <p className="text-textColor text-[0.7rem] font-medium">Categories</p>
