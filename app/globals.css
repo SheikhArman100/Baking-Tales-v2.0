@@ -147,11 +147,7 @@
 		transform: translate(-3%, -3%);
 	}
 }
- @media (max-width: 768px) {
-    
-    .overlay {
-        display: hidden;
-    }}
+
 
 
 }
