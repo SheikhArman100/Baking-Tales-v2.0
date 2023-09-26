@@ -1,7 +1,6 @@
 
 import { Dancing_Script, Inter, Italiana } from 'next/font/google'
 import './globals.css'
-import GrainOverlay from '@/Components/GrainOverlay.js'
 
 const dancingScript=Dancing_Script({
   subsets:["latin"],
@@ -24,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${dancingScript.variable} ${italiana.className}`}>
-         <GrainOverlay/>
+         
         {children}
       </body>
     </html>
