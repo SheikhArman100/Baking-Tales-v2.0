@@ -25,9 +25,9 @@ const Categories = () => {
       <div className="absolute top-[40%] md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <Card>
             <Card.CardContainer>
-              <Card.CategoryIcon icon={cakeIcon} />
-              <Card.CardInfo title="Birthday Cake" price="99.9" />
+              <Card.CategoryIcon  />
               <Card.BgRemoveImage bgRemoveImage={cakeBgRemove} />
+              <Card.CardInfo title="Birthday Cake" price="99.9" />
               <Card.CardImage cardImage={cake1}/>
               <Card.CardButtonWrapper>
                 <Button>

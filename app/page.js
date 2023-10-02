@@ -1,4 +1,3 @@
-
 import Header from "@/Components/header/Header.js";
 import HomeContainer from "./components/HomeContainer";
 import Categories from "@/app/components/Categories";
@@ -9,23 +8,20 @@ import Services from "./components/Services";
 import HomeSection from "./components/HomeSection.js";
 import GrainOverlay from "@/Components/GrainOverlay";
 
-
 export default function Home() {
-  
   return (
     <main className="">
       <HomeSection>
         {/* <GrainOverlay/> */}
         <Header />
-          <HomeContainer>
-            <FeaturedItem/>
-            <Categories/>
-            <AboutUs/>
-            <Journal/>
-            <Services/>
-          </HomeContainer>
+        <HomeContainer>
+          <FeaturedItem />
+          <Categories />
+          <AboutUs />
+          <Journal />
+          <Services />
+        </HomeContainer>
       </HomeSection>
-     
     </main>
   );
 }

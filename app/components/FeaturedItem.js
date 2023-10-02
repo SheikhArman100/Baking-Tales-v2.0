@@ -33,9 +33,9 @@ const FeaturedItem = () => {
         {[...Array(4).keys()].map((i) => (
           <Card key={i}>
             <Card.CardContainer>
-              <Card.CategoryIcon icon={cakeIcon} />
-              <Card.CardInfo title="Birthday Cake" price="99.9" />
+              <Card.CategoryIcon category="cake"/>
               <Card.BgRemoveImage bgRemoveImage={cakeBgRemove} />
+              <Card.CardInfo title="Birthday Cake" price="99.9" />
               <Card.CardImage cardImage={cake1}/>
               <Card.CardButtonWrapper>
                 <Button>

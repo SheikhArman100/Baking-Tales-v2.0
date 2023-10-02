@@ -56,7 +56,7 @@ const HomeContainer = ({ children }) => {
               We are <br className="hidden md:block" /> baking for <br /> your
               pleasure
             </p>
-            <Button className="">
+            <Button className="" href="/shop">
               <Button.Border1 />
               <Button.Border2 />
               <Button.Title>Shop now</Button.Title>
@@ -164,7 +164,7 @@ const HomeContainer = ({ children }) => {
                   Our Fall Product Collection is here
                 </h4>
               </div>
-              <Button className="z-10">
+              <Button className="z-10" href="/shop">
                 <Button.Border1 />
                 <Button.Border2 />
                 <Button.Title>Shop now</Button.Title>

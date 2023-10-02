@@ -54,7 +54,7 @@ const MobileNav = () => {
           </motion.button>
         </div>
         <div className=" col-span-1 flex items-center justify-center ">
-          <Logo />
+          <Logo/>
         </div>
         <div className=" col-span-1 flex items-center justify-center  ">
           <CartButton />

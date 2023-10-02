@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
+import cupcakeIcon from "../public/assets/cupcakeIcon.svg"
+import jarcakeIcon from "../public/assets/jarcakeIcon.svg"
+import chocolatbarIcon from "../public/assets/chocolatebarIcon.svg"
+import  cakeIcon from "../public/assets/cakeIcon.svg"
 
 const Card = ({className,children}) => {
   return (
@@ -22,17 +26,17 @@ const CardContainer=({className,children})=>{
 
     )
 }
-const CategoryIcon=({className,icon})=>{
+const CategoryIcon=({className,category})=>{
     return(
         <div className={twMerge("h-10 w-10 border p-2 border-black border-dotted rounded-full flex items-center justify-center group-hover/card:hidden transition-all",className)}>
-            <Image src={icon} alt="category icon" className="h-full w-full"/>
+            {category==="Cupcake"?<Image src={cupcakeIcon} alt="cupcake category icon" className="h-full w-full"/>:category==="Chocolate bar"?<Image src={chocolatbarIcon} alt="category icon" className="h-full w-full"/>:category==="Jarcake"?<Image src={jarcakeIcon} alt="category icon" className="h-full w-full"/>:<Image src={cakeIcon} alt="category icon" className="h-full w-full"/>}
         </div>
     )
 
 }
 const CardInfo=({className,title,price})=>{
     return(
-        <div className={twMerge("flex flex-col items-center font-semibold group-hover/card:hidden transition-all",className)}>
+        <div className={twMerge("flex text-black flex-col items-center font-semibold group-hover/card:hidden transition-all",className)}>
             <h4>{title}</h4>
             <span>${price}</span>
 
@@ -41,11 +45,11 @@ const CardInfo=({className,title,price})=>{
 }
 const BgRemoveImage=({className,bgRemoveImage})=>{
     return(
-        <div className={twMerge("absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-32 w-32 group-hover/card:hidden transition-all",className)}>
+        <div className={twMerge(" h-32 w-32 group-hover/card:hidden transition-all",className)}>
         <Image
             src={bgRemoveImage}
             alt="card image bg remove"
-            className="object-cover w-full h-full"
+            className="object-cover object-center w-full h-full"
           />
 
     </div>

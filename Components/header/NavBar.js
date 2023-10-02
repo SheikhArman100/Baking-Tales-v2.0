@@ -16,7 +16,7 @@ const navItems = [
   },
   {
     name: "Products",
-    href: "/products",
+    href: "/shop",
   },
   {
     name: "Blogs",

@@ -41,7 +41,11 @@
 @layer utilities {
   .font2{
     font-family: var(--font-dancingScript);
-    font-weight: 200;
+    
+  }
+ .font3{
+    font-family: var(--font-playFairDisplay);
+    
   }
   .mask{
     mask-image: linear-gradient(black,black),url(../public/assets/mask.svg);
