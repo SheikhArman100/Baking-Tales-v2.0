@@ -6,11 +6,13 @@ import SizeSelect from "./SizeSelect";
 import FlavorSelect from "./FlavorSelect";
 import Quantity from "./Quantity";
 import AddToCartButton from "./AddToCartButton";
+import PageReveal from "@/Components/PageReveal";
 
 const Product = ({ params }) => {
   const product = products.find((product) => product.id == params.ProductId);
   // console.log(product)
   return (
+    <PageReveal>
     <section className="md:pt-[7rem] px-8 py-8  lg:px-[2rem] xl:px-[4rem]">
       <h2 className=" text-4xl mt-3 w-full text-center text-accentColor">
         Product
@@ -56,6 +58,7 @@ const Product = ({ params }) => {
       </div>
       </div>
     </section>
+    </PageReveal>
   );
 };
 

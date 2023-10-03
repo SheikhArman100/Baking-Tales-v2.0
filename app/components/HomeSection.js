@@ -8,7 +8,7 @@ const HomeSection = ({children}) => {
   return (
     <main className="">
       {isLoading ? (
-        <Loader setIsLoading={setIsLoading} />
+        <Loader setIsLoading={setIsLoading}  />
       ) : (
         <div className="min-h-screen relative w-full flex flex-col bg-bgColor ">
           {children}

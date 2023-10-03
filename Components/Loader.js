@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { LoadingBar } from "@/libs/animation/loader.js";
@@ -11,7 +12,7 @@ const Loader = ({setIsLoading}) => {
       setCounter((prevCounter) =>
         prevCounter < 100 ? prevCounter + 1 : prevCounter
       );
-    }, 25);
+    }, 20);
 
     return () => {
       clearInterval(interval); // Clear the interval when the component unmounts

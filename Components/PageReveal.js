@@ -5,6 +5,7 @@ import {
   PageRevealAnimation,
   PageRevealStaggered,
 } from "@/libs/animation/pagereveal.animation";
+import Header from "./header/Header";
 
 const PageReveal = ({ children }) => {
   return (
@@ -15,7 +16,12 @@ const PageReveal = ({ children }) => {
         animate="animate"
         className="w-full min-h-screen bg-bgColor origin-top"
       >
-        {children}
+        <motion.div variants={PageRevealStaggered}>
+          <Header/>
+          {children}
+
+        </motion.div>
+        
       </motion.div>
     </div>
   );

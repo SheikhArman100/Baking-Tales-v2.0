@@ -3,11 +3,13 @@ import Card from "@/Components/Card";
 import CategoriesList from "@/Components/CategoriesList";
 import Filter from "@/Components/Filter";
 import FilterMobile from "@/Components/FilterMobile";
+import PageReveal from "@/Components/PageReveal";
 import { products } from "@/libs/Data/data";
 import { Plus } from "lucide-react";
 
 const Shop = () => {
   return (
+    <PageReveal>
     <div className="w-full h-full md:pt-[6rem] px-8 lg:px-[2rem] xl:px-[4rem] text-accentColor2">
       <div className="w-full flex flex-col items-center gap-y-4 mt-4">
         <h2 className=" text-4xl mt-3 w-full text-center text-accentColor">
@@ -77,6 +79,7 @@ const Shop = () => {
         </div>
       </div>
     </div>
+    </PageReveal>
   );
 };
 
