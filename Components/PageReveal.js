@@ -1,11 +1,9 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
 import {
   PageRevealAnimation,
   PageRevealStaggered,
 } from "@/libs/animation/pagereveal.animation";
-import Header from "./header/Header";
+import { motion } from "framer-motion";
 
 const PageReveal = ({ children }) => {
   return (
@@ -16,12 +14,7 @@ const PageReveal = ({ children }) => {
         animate="animate"
         className="w-full min-h-screen bg-bgColor origin-top"
       >
-        <motion.div variants={PageRevealStaggered}>
-          <Header/>
-          {children}
-
-        </motion.div>
-        
+        <motion.div variants={PageRevealStaggered}>{children}</motion.div>
       </motion.div>
     </div>
   );

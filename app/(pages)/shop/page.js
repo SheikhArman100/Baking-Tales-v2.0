@@ -3,13 +3,11 @@ import Card from "@/Components/Card";
 import CategoriesList from "@/Components/CategoriesList";
 import Filter from "@/Components/Filter";
 import FilterMobile from "@/Components/FilterMobile";
-import PageReveal from "@/Components/PageReveal";
 import { products } from "@/libs/Data/data";
 import { Plus } from "lucide-react";
 
 const Shop = () => {
   return (
-    <PageReveal>
     <div className="w-full h-full md:pt-[6rem] px-8 lg:px-[2rem] xl:px-[4rem] text-accentColor2">
       <div className="w-full flex flex-col items-center gap-y-4 mt-4">
         <h2 className=" text-4xl mt-3 w-full text-center text-accentColor">
@@ -23,15 +21,14 @@ const Shop = () => {
       </div>
       <div className="w-full h-[0.1rem] bg-yellow-600 mt-4" />
       <div className="relative w-full flex flex-col md:flex-row ">
-        
         <div className=" md:py-[4rem] md:px-2 md:w-2/5 md:max-w-xs lg:px-[2rem]">
           <h3 className=" text-base p-2 border-b border-white hidden md:flex">
             Select Category
           </h3>
           <CategoriesList />
           <div className="md:hidden w-full mt-4 sm:px-[2rem] md:px-[5rem] lg:px-[7rem]">
-          <FilterMobile/>
-        </div>
+            <FilterMobile />
+          </div>
           <Filter />
         </div>
         <div className="h-full w-[0.1rem] bg-yellow-600" />
@@ -58,7 +55,10 @@ const Shop = () => {
                   />
                   <Card.CardImage cardImage={product.img} />
                   <Card.CardButtonWrapper>
-                    <Button className="h-10 w-28 md:h-12 md:w-40" href={`/shop/${product.id}`}>
+                    <Button
+                      className="h-10 w-28 md:h-12 md:w-40"
+                      href={`/shop/${product.id}`}
+                    >
                       <Button.Border1 className="bg-accentColor2 border-[0.1px]  border-stone-500" />
                       <Button.Border2 className="bg-accentColor2 border-[0.1px]   border-gray-500" />
                       <Button.Title className="text-black font-medium text-xs md:text-sm">
@@ -79,7 +79,6 @@ const Shop = () => {
         </div>
       </div>
     </div>
-    </PageReveal>
   );
 };
 

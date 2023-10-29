@@ -56,17 +56,21 @@ const BgRemoveImage=({className,bgRemoveImage})=>{
     )
 }
 const CardImage=({className,cardImage})=>{
-    return(
-        <div className={twMerge("w-full h-full absolute top-0 left-0 scale-0 group-hover/card:scale-100 transition-all duration-[0.4s] ",className)}>
-            <Image
-            src={cardImage}
-            alt="card image hover"
-            className="w-full h-full object-cover"
-            placeholder="blur"
-          />
-
-        </div>
-    )
+    return (
+      <div
+        className={twMerge(
+          "w-full h-full absolute top-0 left-0 opacity-0  group-hover/card:opacity-100 transition-all duration-[0.4s] ",
+          className
+        )}
+      >
+        <Image
+          src={cardImage}
+          alt="card image hover"
+          className="w-full h-full object-cover"
+          placeholder="blur"
+        />
+      </div>
+    );
 
 }
 const CardButtonWrapper=({className,children})=>{

@@ -5,22 +5,18 @@ export const PageRevealAnimation = {
   animate: {
     scaleY: 1,
     transition: {
-    ease: "linear",
-    duration: 0.6,
-    delayChildren: 0.6,
-    staggerChildren: 0.3,
+      ease: "linear",
+      duration: 0.8,
+      delayChildren: 0.8,
+    },
   },
-  },
-  
 };
 export const PageRevealStaggered = {
-  initial: {  opacity:0 },
+  initial: { opacity: 0 },
   animate: {
-    
-    opacity:1,
+    opacity: 1,
     transition: {
-    duration: 0.5,
+      staggerChildren:0.3
+    },
   },
-  },
-  
 };
