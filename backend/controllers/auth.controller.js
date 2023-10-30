@@ -12,26 +12,33 @@ const generateOTP = async (req, res) => {
   try {
     const { email, phoneNumber, register } = req.body;
 
-    if (register) {
-      //? check is email or phoneNumber already exist in database if this is for register
-      const existedUser = await prisma.user.findFirst({
-        where: {
-          OR: [
-            {
-              email: email,
-            },
-            {
-              phoneNumber: phoneNumber,
-            },
-          ],
-        },
-      });
+    //? check is email or phoneNumber already exist in database if this is for register
+    const existedUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          {
+            email: email,
+          },
+          {
+            phoneNumber: phoneNumber,
+          },
+        ],
+      },
+    });
 
+    if (register) {
       if (existedUser) {
         return res.status(409).json({
           status: "failed",
           message: "Phone number or email is already used",
         });
+      }
+    } else {
+      if (!existedUser) {
+        return res.status(401).json({
+          status: "failed",
+          message: "Email or Password doesn't match with any account",
+        }); //Unauthorized
       }
     }
 
@@ -417,5 +424,5 @@ module.exports = {
   registerUser,
   handleSignin,
   handleSignout,
-  updateAccessToken
+  updateAccessToken,
 };
