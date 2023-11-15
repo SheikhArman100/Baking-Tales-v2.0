@@ -1,7 +1,9 @@
 "use client";
 import Button from "@/Components/Button";
+import { firebaseStorage } from "@/libs/firebase/firebaseConfig";
 import { signupSchema } from "@/libs/zod_schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,7 +13,6 @@ const FormSignup = () => {
     password: false,
     passwordConfirmation: false,
   });
-
 
   //react-hook-form
   const {
@@ -23,12 +24,17 @@ const FormSignup = () => {
     resolver: zodResolver(signupSchema),
   });
 
- 
-
-  //handle sign in
-  const handleSignup=()=>{
-    
-  }
+  //handle sign up
+  const handleSignup =async (data) => {
+    if (data.image) {
+      const imageRef = ref(firebaseStorage, `users/${data.phoneNumber}`);
+      uploadBytes(imageRef, data.image[0]).then((image) => {
+        getDownloadURL(image.ref).then((url) => {
+          console.log(url);
+        });
+      });
+    }
+  };
   return (
     <form
       className="w-full mt-8 flex flex-col items-center "

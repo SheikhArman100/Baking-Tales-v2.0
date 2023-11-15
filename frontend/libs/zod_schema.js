@@ -26,7 +26,7 @@ export const signupSchema = z
       message: "Password too short - should be 6 chars minimum",
     }),
     passwordConfirmation: z.string().nonempty("Confirm password is required"),
-    // image: z.string().optional(),
+    image: z.any().optional()
   })
   .refine((data) => data.password === data.passwordConfirmation, {
     message: "Passwords do not match",

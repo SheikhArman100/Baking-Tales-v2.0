@@ -91,54 +91,61 @@ const HomeContainer = ({ children }) => {
             <div className="h-[380px] w-[252px] rounded-full  " />
           </div>
           <div className=" hidden md:flex flex-col items-end gap-y-2 md:mt-[5rem]  md:w-[50%] lg:mr-[3rem] xl:mr-[6rem]">
-            
-              <p className=" text-textColor text-center text-base font-semibold ">
-                Enjoy your indulgent afternoon tea <br/> in te comfort of your home <br/>
-                with the delicious cake
-              </p>
-              <div className="  flex flex-col item-end mt-3 ">
-                <SectionTitle title="New Items" />
-                <div className="relative flex items-center justify-center mt-2 ">
-                  <div className="relative md:h-28 lg:h-32 aspect-square  rounded-full left-[5%]">
-                    <Image
-                      src={image2}
-                      alt="home image 2"
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover w-full h-full rounded-full "
-                      placeholder="blur"
-                    />
-                  </div>
-                  <div className="relative md:h-28 lg:h-32 aspect-square  rounded-full">
-                    <Image
-                      src={image3}
-                      alt="home image 3"
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover w-full h-full rounded-full "
-                      placeholder="blur"
-                    />
-                  </div>
+            <p className=" text-textColor text-center text-base font-semibold ">
+              Enjoy your indulgent afternoon tea <br /> in te comfort of your
+              home <br />
+              with the delicious cake
+            </p>
+            <div className="  flex flex-col item-end mt-3 ">
+              <SectionTitle title="New Items" />
+              <div className="relative flex items-center justify-center mt-2 ">
+                <div className="relative md:h-28 lg:h-32 aspect-square  rounded-full left-[5%]">
+                  <Image
+                    src={image2}
+                    alt="home image 2"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover w-full h-full rounded-full "
+                    placeholder="blur"
+                  />
                 </div>
-                <div className=" flex justify-center flex-col gap-x-4 items-center mt-4 ">
+                <div className="relative md:h-28 lg:h-32 aspect-square  rounded-full">
+                  <Image
+                    src={image3}
+                    alt="home image 3"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover w-full h-full rounded-full "
+                    placeholder="blur"
+                  />
+                </div>
+              </div>
+              <div className=" flex justify-center flex-col gap-x-4 items-center mt-4 ">
                 <h5 className="text-textColor text-sm">Follow us:</h5>
                 <div className="flex   items-center justify-center  ">
                   <FramerMagnetic>
-                    <Facebook strokeWidth="1" className="fill-accentColor" />
+                    <Facebook
+                      strokeWidth="1"
+                      className="fill-accentColor stroke-black"
+                    />
                   </FramerMagnetic>
 
                   <FramerMagnetic>
-                    <Instagram strokeWidth="1" className="fill-accentColor" />
+                    <Instagram
+                      strokeWidth="1"
+                      className="fill-accentColor  stroke-black"
+                    />
                   </FramerMagnetic>
 
                   <FramerMagnetic>
-                    <Twitter strokeWidth="1" className="fill-accentColor" />
+                    <Twitter
+                      strokeWidth="1"
+                      className="fill-accentColor  stroke-black"
+                    />
                   </FramerMagnetic>
                 </div>
               </div>
-              </div>
-              
-            
+            </div>
           </div>
         </motion.div>
       </div>

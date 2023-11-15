@@ -1,11 +1,14 @@
 "use client";
-import { revealParagraphContainer, revealTitleAnimation } from "@/libs/animation/pagereveal.animation";
+import {
+  revealContainer,
+  revealTitleAnimation,
+} from "@/libs/animation/pagereveal.animation";
 
 import { motion } from "framer-motion";
 
 const RevealTitle = ({ phrases, containerStyle, phraseStyle }) => {
   return (
-    <motion.div className={containerStyle} variants={revealParagraphContainer}>
+    <motion.div className={containerStyle} variants={revealContainer}>
       {phrases.map((phrase, index) => {
         return (
           <div key={index} className="overflow-hidden">

@@ -22,7 +22,7 @@ const Wishlist = () => {
         />
       </section>
       <div className="h-0.5 w-full bg-yellow-500 mt-8" />
-      <div className="w-full grid grid-cols-2 sm:grid-cols-3  sm:gap-4 gap-2 mt-6 md:mt-8 lg:mt-12 sm:px-[2rem] md:px-[5rem] lg:px-[7rem]    md:gap-8">
+      <div className="w-full grid place-items-center grid-cols-2 sm:grid-cols-3  sm:gap-4 gap-2 mt-6 md:mt-8 lg:mt-12 sm:px-[2rem] md:px-[5rem] lg:px-[7rem]    md:gap-8">
         {products.map((product, index) => {
           return (
             <Card

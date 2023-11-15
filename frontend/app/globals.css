@@ -51,6 +51,8 @@
     mask-image: linear-gradient(black,black),url(../public/assets/mask.svg);
     mask-composite: exclude;
     mask-repeat: no-repeat;
+	mask-size: auto
+	
     /* mask-position: center center; */
   }
 .overlay {

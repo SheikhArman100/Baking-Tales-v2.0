@@ -1,12 +1,11 @@
-import React from "react";
-import Logo from "./Logo";
-import { Heart, ShoppingCart, User2 } from "lucide-react";
-import IconCircleBorder from "./IconCircleBorder";
-import CartButton from "./CartButton";
-import AnimatedLink from "./AnimatedLink";
+import { Heart, User2 } from "lucide-react";
 import Link from "next/link";
+import AnimatedLink from "./AnimatedLink";
+import CartButton from "./CartButton";
+import IconCircleBorder from "./IconCircleBorder";
+import Logo from "./Logo";
 const navItems = [
-   {
+  {
     name: "Home",
     href: "/",
   },
@@ -21,7 +20,7 @@ const navItems = [
   {
     name: "Blogs",
     href: "/blogs",
-  }
+  },
 ];
 
 const NavBar = () => {
@@ -40,15 +39,18 @@ const NavBar = () => {
         <Logo />
       </div>
       <div className=" flex items-center justify-end gap-x-6 text-textColor mr-2">
-        <IconCircleBorder>
-          <Heart className="h-[1.2rem] aspect-square" />
-        </IconCircleBorder>
+        <Link href="/wishlist">
+          <IconCircleBorder>
+            <Heart className="h-[1.2rem] aspect-square" />
+          </IconCircleBorder>
+        </Link>
         <Link href="auth/signin">
           <IconCircleBorder>
             <User2 className="h-[1.2rem] aspect-square" />
           </IconCircleBorder>
         </Link>
         <div className="w-[0.01rem] h-[1.2rem] bg-textColor" />
+
         <CartButton />
       </div>
     </div>
