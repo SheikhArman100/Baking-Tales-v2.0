@@ -1,6 +1,8 @@
+import { AlertTriangle, PlusCircle } from "lucide-react";
+
 const FormCheckout = () => {
   return (
-    <form className=" py-4 px-4 w-full  flex flex-col">
+    <form className=" py-4 px-4 w-full  flex flex-col lg:col-span-2 xl:col-span-3">
       <section>
         <h6 className="text-base font-semibold text-white text-left">
           Shipping Details
@@ -85,7 +87,7 @@ const FormCheckout = () => {
           Payment Method
         </h6>
         <fieldset className=" grid grid-cols-2 gap-x-4 mt-2">
-          <div>
+          <div className=" ">
             <input
               type="radio"
               name="DeliveryOption"
@@ -97,26 +99,24 @@ const FormCheckout = () => {
 
             <label
               htmlFor="DeliveryStandard"
-              className=" cursor-pointer rounded-lg border border-yellow-500 bg-yellow-500 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500 flex flex-col items-start"
+              className=" cursor-pointer rounded-lg border-2 border-white bg-white p-3 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-yellow-500 peer-checked:ring-1 peer-checked:ring-yellow-500 h-full w-full flex  items-center justify-center gap-x-1 "
             >
-              <div className="w-full flex items-center justify-between">
-                <p className="text-white text-sm font-bold capitalize">
-                  Cash on delivery
-                </p>
+              <p className="text-black text-sm font-bold capitalize">
+                Cash on delivery
+              </p>
 
-                <svg
-                  className="hidden h-5 w-5 text-blue-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
+              <svg
+                className="hidden h-5 w-5 text-yellow-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </label>
           </div>
 
@@ -131,31 +131,49 @@ const FormCheckout = () => {
 
             <label
               htmlFor="DeliveryPriority"
-              className="h-full cursor-pointer rounded-lg border border-yellow-500 bg-yellow-500 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500 flex flex-col item-center justify-center"
+              className="cursor-pointer rounded-lg border-2 border-white bg-white p-3 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-yellow-500 peer-checked:ring-1 peer-checked:ring-yellow-500  h-full w-full flex  items-center justify-center gap-x-1"
             >
-              <div className="w-full h-full flex items-center justify-between">
-                <p className="text-white text-sm font-bold capitalize">Bkash</p>
+              <p className="text-black text-sm font-bold capitalize">Bkash</p>
 
-                <svg
-                  className="hidden h-5 w-5 text-blue-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-
-             
+              <svg
+                className="hidden h-5 w-5 text-yellow-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </label>
           </div>
         </fieldset>
       </section>
-      <section></section>
+      <section>
+        <h6 className="text-base font-semibold text-white text-left mt-3">
+          More Details
+        </h6>
+        <div className="flex items-center gap-x-2 mt-2">
+          <AlertTriangle size={20} className="stroke-red-500" />
+          <p className="text-sm font-semibold text-gray-300">
+            Delivery charge $120
+          </p>
+        </div>
+      </section>
+      <section className="mt-3 flex flex-col gap-y-2">
+        <div className="flex items-center gap-x-2">
+          <PlusCircle size={24} className="stroke-yellow-500" />
+          <p className="text-yellow-500 text-sm font-semibold">Add a note</p>
+        </div>
+        <div className="flex items-center gap-x-2">
+          <PlusCircle size={24} className="stroke-yellow-500" />
+          <p className="text-yellow-500 text-sm font-semibold">
+            Add a gift box and card (pay $40)
+          </p>
+        </div>
+      </section>
     </form>
   );
 };

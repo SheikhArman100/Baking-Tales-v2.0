@@ -12,10 +12,10 @@ const Checkout = () => {
         phrases={["Checkout Order"]}
         phraseStyle="text-3xl md:text-4xl font-medium text-accentColor"
       />
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 py-4">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 py-4">
         <FormCheckout/>
         {/* -----------------------------------------------------------------right side------------------------------------------------------------------ */}
-        <section className="py-4 px-4 w-full h-fit  flex flex-col  border border-yellow-500 rounded-lg">
+        <section className="py-4 px-4 w-full h-fit  flex flex-col  border border-yellow-500 rounded-lg xl:col-span-2">
           <div>
             <h6 className="text-base font-semibold text-white text-left">
               Your Order
@@ -78,7 +78,7 @@ const Checkout = () => {
             <Button.Border1 className="bg-yellow-600" />
             <Button.Border2 className="bg-yellow-600" />
             <Button.Title className="text-base font-bold">
-              Add to cart
+              Place order
             </Button.Title>
             <Button.Icon>
               <Plus size={28} className="stroke-white" />
