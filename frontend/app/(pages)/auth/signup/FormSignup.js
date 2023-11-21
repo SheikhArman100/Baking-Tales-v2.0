@@ -1,10 +1,8 @@
 "use client";
 import Button from "@/Components/Button";
-import { firebaseStorage } from "@/libs/firebase/firebaseConfig";
-import { handleSignup } from "@/libs/serverAction";
+
 import { signupSchema } from "@/libs/zod_schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -25,8 +23,8 @@ const FormSignup = () => {
     resolver: zodResolver(signupSchema),
   });
 
- 
-  
+  const handleSignup = (data) => {};
+
   return (
     <form
       className="w-full mt-8 flex flex-col items-center "
@@ -155,21 +153,6 @@ const FormSignup = () => {
           {errors.passwordConfirmation?.message && (
             <p className="text-xs font-semibold text-red-700">
               *{errors.passwordConfirmation?.message}
-            </p>
-          )}
-        </div>
-
-        {/* image */}
-        <div className="flex flex-col gap-y-2 col-span-2">
-          <label className="text-sm font-semibold">Profile image</label>
-          <input
-            type="file"
-            {...register("image")}
-            className="border border-accentColor2 p-2 rounded-lg text-sm font-semibold file: "
-          />
-          {errors.image?.message && (
-            <p className="text-xs font-semibold text-red-700">
-              *{errors.image?.message}
             </p>
           )}
         </div>
