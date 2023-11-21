@@ -1,4 +1,5 @@
 import QueryProvider from "@/libs/react-query/QueryProvider";
+import ToastifyComponent from "@/libs/react-toastify/ToastifyComponent";
 import { Dancing_Script, Italiana, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -28,7 +29,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${dancingScript.variable} ${playfairDisplay.variable} ${italiana.className} `}
       >
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          {children}
+          <ToastifyComponent />
+        </QueryProvider>
       </body>
     </html>
   );

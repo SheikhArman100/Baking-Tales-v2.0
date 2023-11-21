@@ -2,12 +2,14 @@
 import Button from "@/Components/Button";
 
 import { signupSchema } from "@/libs/zod_schema";
+import { setSignup, useSignupStore } from "@/libs/zustand/signupStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const FormSignup = () => {
+  const details = useSignupStore((state) => state);
   const [showPassword, setShowPassword] = useState({
     password: false,
     passwordConfirmation: false,
@@ -23,7 +25,9 @@ const FormSignup = () => {
     resolver: zodResolver(signupSchema),
   });
 
-  const handleSignup = (data) => {};
+  const handleSignup = (data) => {
+    setSignup(data);
+  };
 
   return (
     <form
@@ -37,7 +41,7 @@ const FormSignup = () => {
           <input
             type="text"
             {...register("name")}
-            className="w-full rounded-md border  border-white pe-10 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
+            className="w-full rounded-md border  border-white  shadow-sm text-sm bg-transparent py-3 px-2 focus:border focus:border-accentColor focus:outline-0"
           />
           {errors.name?.message && (
             <p className="text-xs font-semibold text-red-700">
@@ -51,7 +55,7 @@ const FormSignup = () => {
           <input
             type="tel"
             {...register("phoneNumber")}
-            className="w-full rounded-md border  border-white pe-10 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
+            className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
           />
           {errors.phoneNumber?.message && (
             <p className="text-xs font-semibold text-red-700">
@@ -65,7 +69,7 @@ const FormSignup = () => {
           <input
             type="email"
             {...register("email")}
-            className="w-full rounded-md border  border-white pe-10 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
+            className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
           />
           {errors.email?.message && (
             <p className="text-xs font-semibold text-red-700">
@@ -80,7 +84,7 @@ const FormSignup = () => {
             type="text"
             {...register("address")}
             rows="2"
-            className="w-full rounded-md border  border-white pe-10 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
+            className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
           />
           {errors.address?.message && (
             <p className="text-xs font-semibold text-red-700">
@@ -95,7 +99,7 @@ const FormSignup = () => {
             <input
               type={showPassword.password ? "text" : "password"}
               {...register("password")}
-              className="w-full rounded-md border  border-white pe-10 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0 "
+              className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0 "
             />
 
             <span className=" absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-500 ">
@@ -129,7 +133,7 @@ const FormSignup = () => {
             <input
               type={showPassword.passwordConfirmation ? "text" : "password"}
               {...register("passwordConfirmation")}
-              className="w-full rounded-md border  border-white pe-10 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0 "
+              className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0 "
             />
 
             <span className=" absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-500 ">
