@@ -1,3 +1,4 @@
+import QueryProvider from "@/libs/react-query/QueryProvider";
 import { Dancing_Script, Italiana, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -27,7 +28,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${dancingScript.variable} ${playfairDisplay.variable} ${italiana.className} `}
       >
-        {children}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );
