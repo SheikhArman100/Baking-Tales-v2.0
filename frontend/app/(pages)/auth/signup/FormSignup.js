@@ -1,19 +1,17 @@
 "use client";
 import Button from "@/Components/Button";
+import useGenerateOTP from "@/hooks/useGenerateOTP";
 
 import { signupSchema } from "@/libs/zod_schema";
-import { setSignup, useSignupStore } from "@/libs/zustand/signupStore";
+import { setSignup } from "@/libs/zustand/signupStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EyeIcon, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const FormSignup = () => {
-  const details = useSignupStore((state) => state);
-  const [showPassword, setShowPassword] = useState({
-    password: false,
-    passwordConfirmation: false,
-  });
+  const router = useRouter();
+  const generateOtpMutation = useGenerateOTP();
 
   //react-hook-form
   const {
@@ -25,16 +23,35 @@ const FormSignup = () => {
     resolver: zodResolver(signupSchema),
   });
 
+  //generate otp mutation
+
   const handleSignup = (data) => {
     setSignup(data);
+    generateOtpMutation.mutate(
+      {
+        email: data.email,
+        register: true,
+      },
+      {
+        onSuccess: (data) => {
+          toast.success(data.message);
+          router.push("/auth/signup/otp");
+          reset();
+        },
+        onError: (data) => {
+          toast.error(data.response.data.message);
+        },
+      }
+    );
   };
 
   return (
     <form
-      className="w-full mt-8 flex flex-col items-center "
+      autoComplete="off"
+      className="w-full mt-8 flex flex-col items-center"
       onSubmit={handleSubmit(handleSignup)}
     >
-      <div className="grid grid-cols-2 gap-2">
+      <div className="w-full grid grid-cols-1 gap-2">
         {/* name */}
         <div className="flex flex-col gap-y-2">
           <label className="text-sm font-semibold">Name</label>
@@ -54,6 +71,7 @@ const FormSignup = () => {
           <label className="text-sm font-semibold">Phone Number</label>
           <input
             type="tel"
+            placeholder="ex: 01*** *** ***"
             {...register("phoneNumber")}
             className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
           />
@@ -64,7 +82,7 @@ const FormSignup = () => {
           )}
         </div>
         {/* email */}
-        <div className="flex flex-col gap-y-2 col-span-2 md:col-span-1">
+        <div className="flex flex-col gap-y-2">
           <label className="text-sm font-semibold">Email</label>
           <input
             type="email"
@@ -77,94 +95,17 @@ const FormSignup = () => {
             </p>
           )}
         </div>
-        {/* address */}
-        <div className="flex flex-col gap-y-2 col-span-2 md:col-span-1">
-          <label className="text-sm font-semibold">Address</label>
-          <input
-            type="text"
-            {...register("address")}
-            rows="2"
-            className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
-          />
-          {errors.address?.message && (
-            <p className="text-xs font-semibold text-red-700">
-              *{errors.address?.message}
-            </p>
-          )}
-        </div>
-        {/* password */}
-        <div className="flex flex-col gap-y-2 col-span-2 md:col-span-1">
-          <label className="text-sm font-semibold">Password</label>
-          <div className="relative">
-            <input
-              type={showPassword.password ? "text" : "password"}
-              {...register("password")}
-              className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0 "
-            />
-
-            <span className=" absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-500 ">
-              <button
-                type="button"
-                onClick={() =>
-                  setShowPassword({
-                    ...showPassword,
-                    password: !showPassword.password,
-                  })
-                }
-              >
-                {showPassword.password ? (
-                  <EyeIcon size={16} />
-                ) : (
-                  <EyeOff size={16} />
-                )}
-              </button>
-            </span>
-          </div>
-          {errors.password?.message && (
-            <p className="text-xs font-semibold text-red-700">
-              *{errors.password?.message}
-            </p>
-          )}
-        </div>
-        {/* confirm password */}
-        <div className="flex flex-col gap-y-2 col-span-2 md:col-span-1">
-          <label className="text-sm font-semibold">Confirm Password</label>
-          <div className="relative">
-            <input
-              type={showPassword.passwordConfirmation ? "text" : "password"}
-              {...register("passwordConfirmation")}
-              className="w-full rounded-md border  border-white px-2 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0 "
-            />
-
-            <span className=" absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-500 ">
-              <button
-                type="button"
-                onClick={() =>
-                  setShowPassword({
-                    ...showPassword,
-                    passwordConfirmation: !showPassword.passwordConfirmation,
-                  })
-                }
-              >
-                {showPassword.passwordConfirmation ? (
-                  <EyeIcon size={16} />
-                ) : (
-                  <EyeOff size={16} />
-                )}
-              </button>
-            </span>
-          </div>
-          {errors.passwordConfirmation?.message && (
-            <p className="text-xs font-semibold text-red-700">
-              *{errors.passwordConfirmation?.message}
-            </p>
-          )}
-        </div>
       </div>
       <Button className="w-[80%] h-[3.5rem] mt-6">
         <Button.Border1 className="bg-yellow-600 z-[2]" />
         <Button.Border2 className="bg-yellow-600 z-[1]" />
-        <Button.Title className="font-bold text-base">Sign Up</Button.Title>
+        <Button.Title className="font-bold text-base">
+          {generateOtpMutation.isPending ? (
+            <span className="loading loading-dots loading-sm"></span>
+          ) : (
+            <span>Sign up</span>
+          )}
+        </Button.Title>
       </Button>
     </form>
   );

@@ -4,8 +4,6 @@ export const useSignupStore = create(() => ({
   name: "",
   phoneNumber: "",
   email: "",
-  address: "",
-  password: "",
 }));
 
 export const setSignup = (details) => {
@@ -13,8 +11,6 @@ export const setSignup = (details) => {
     name: details.name,
     phoneNumber: details.phoneNumber,
     email: details.email,
-    address: details.address,
-    password: details.password,
   });
 };
 export const removeSignup = () => {
@@ -22,7 +18,5 @@ export const removeSignup = () => {
     name: "",
     phoneNumber: "",
     email: "",
-    address: "",
-    password: "",
   });
 };

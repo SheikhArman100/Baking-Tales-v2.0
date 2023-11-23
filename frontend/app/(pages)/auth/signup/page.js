@@ -22,7 +22,7 @@ const Signup = () => {
         <FormSignup/>
         <p className="mt-4 text-base font-medium">
           Already have an account?
-          <Link href="/" className="underline">
+          <Link href="/auth/signin" className="underline">
             Sign in
           </Link>
         </p>

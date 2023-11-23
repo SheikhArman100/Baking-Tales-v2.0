@@ -4,25 +4,18 @@ const otpGenerator = require("otp-generator");
 const nodemailer = require("nodemailer");
 const Mailgen = require("mailgen");
 const bcrypt = require("bcrypt");
-const firebase = require("../utils/firebase/firebaseConfig");
+
 const jwt = require("jsonwebtoken");
 
 //? generate OTP AND SEND it to the phoneNumber
 const generateOTP = async (req, res) => {
   try {
-    const { email, phoneNumber, register } = req.body;
+    const { email, register } = req.body;
 
     //? check is email or phoneNumber already exist in database if this is for register
     const existedUser = await prisma.user.findFirst({
       where: {
-        OR: [
-          {
-            email: email,
-          },
-          {
-            phoneNumber: phoneNumber,
-          },
-        ],
+        email: email,
       },
     });
 
@@ -30,14 +23,14 @@ const generateOTP = async (req, res) => {
       if (existedUser) {
         return res.status(409).json({
           status: "failed",
-          message: "Phone number or email is already used",
+          message: "Email is already used",
         });
       }
     } else {
       if (!existedUser) {
         return res.status(401).json({
           status: "failed",
-          message: "Email or Password doesn't match with any account",
+          message: "Email doesn't match with any account",
         }); //Unauthorized
       }
     }
@@ -65,7 +58,7 @@ const generateOTP = async (req, res) => {
     let MailGenerator = new Mailgen({
       theme: "cerberus",
       product: {
-        name: "LaundryMama",
+        name: "Baking Tales",
         link: "https://mailgen.js/",
       },
     });
@@ -74,7 +67,7 @@ const generateOTP = async (req, res) => {
       body: {
         name: "",
         intro: [
-          "Please enter the following verification code to verify your LaundryMama account.",
+          "Please enter the following verification code to verify your Baking Tales account.",
           `<h2>${otp}</h2>`,
         ],
 
@@ -179,11 +172,10 @@ const verifyOtp = async (req, res) => {
 //register new user
 const registerUser = async (req, res) => {
   try {
-    const { name, email, phoneNumber, image, address, password, isVerified } =
-      req.body;
+    const { name, email, phoneNumber, image, isVerified } = req.body;
 
     if (isVerified) {
-      if (!name || !email || !phoneNumber || !image || !address || !password) {
+      if (!name || !email || !phoneNumber || !image) {
         return res.status(400).json({
           status: "failed",
           message: "Invalid or incomplete user data",
@@ -192,42 +184,72 @@ const registerUser = async (req, res) => {
       //? check is email or phoneNumber already exist in database if this is for register
       const existedUser = await prisma.user.findFirst({
         where: {
-          OR: [
-            {
-              email: email,
-            },
-            {
-              phoneNumber: phoneNumber,
-            },
-          ],
+          email: email,
         },
       });
 
       if (existedUser) {
         return res.status(409).json({
           status: "failed",
-          message: "Phone number or email is already used",
+          message: "Email is already used",
         });
       }
 
       try {
-        //encrypt password
-        const hashPassword = await bcrypt.hash(password, 10);
         //create user in database
-        await prisma.user.create({
+        const newUser = await prisma.user.create({
           data: {
             name,
             email,
             phoneNumber,
             isVerified,
             image,
-            address,
-            password: hashPassword,
           },
         });
-        return res.status(201).json({
+
+        //?creating accessToken and refreshToken
+        const accessToken = jwt.sign(
+          {
+            id: newUser.id,
+            email: newUser.email,
+            role: newUser.role,
+          },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: "120s" }
+        );
+        const refreshToken = jwt.sign(
+          {
+            id: newUser.id,
+            email: newUser.email,
+            role: newUser.role,
+          },
+          process.env.REFRESH_TOKEN_SECRET,
+          { expiresIn: "600s" }
+        );
+
+        //?Update the user in the database with the refresh token.
+        await prisma.user.update({
+          where: {
+            id: newUser.id,
+          },
+          data: {
+            refreshToken: refreshToken,
+          },
+        });
+
+        //? // Creates Secure Cookie with refresh token
+        res.cookie("BakingTalesJwt", refreshToken, {
+          httpOnly: true,
+          sameSite: "None",
+          secure: true,
+          maxAge: 10 * 60 * 1000, //3min
+        });
+
+        //? return accessToken in res
+        return res.status(200).json({
+          accessToken: accessToken,
           status: "success",
-          message: "New account is created successfully",
+          message: "Your account is created successfully",
         });
       } catch (error) {
         logger.error(error);
@@ -248,11 +270,17 @@ const registerUser = async (req, res) => {
 //signin user
 const handleSignin = async (req, res) => {
   //?extract email and password from the body of req and check if any value is missing
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { email, isVerified } = req.body;
+  if (!email) {
     return res.status(400).json({
       status: "failed",
       message: "Invalid or incomplete user data",
+    });
+  }
+  if (!isVerified) {
+    return res.status(400).json({
+      status: "failed",
+      message: "Verify account using OTP",
     });
   }
 
@@ -262,20 +290,6 @@ const handleSignin = async (req, res) => {
       email: email,
     },
   });
-  if (!findUser)
-    return res.status(401).json({
-      status: "failed",
-      message: "Email or Password doesn't match with any account",
-    }); //Unauthorized
-
-  //? evaluate and compare password
-  const matchPassword = await bcrypt.compare(password, findUser.password);
-  if (!matchPassword) {
-    return res.status(401).json({
-      status: "failed",
-      message: "Email or Password doesn't match with any account",
-    }); //Unauthorized
-  }
 
   //?creating accessToken and refreshToken
   const accessToken = jwt.sign(
@@ -285,7 +299,7 @@ const handleSignin = async (req, res) => {
       role: findUser.role,
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "60s" }
+    { expiresIn: "120s" }
   );
   const refreshToken = jwt.sign(
     {
@@ -294,13 +308,13 @@ const handleSignin = async (req, res) => {
       role: findUser.role,
     },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: "180s" }
+    { expiresIn: "600s" }
   );
 
   //?Update the user in the database with the refresh token.
   await prisma.user.update({
     where: {
-      email: findUser.email,
+      id: findUser.id,
     },
     data: {
       refreshToken: refreshToken,
@@ -308,11 +322,11 @@ const handleSignin = async (req, res) => {
   });
 
   //? // Creates Secure Cookie with refresh token
-  res.cookie("laundryMamaJwt", refreshToken, {
+  res.cookie("BakingTalesJwt", refreshToken, {
     httpOnly: true,
     sameSite: "None",
     secure: true,
-    maxAge: 3 * 60 * 1000, //3min
+    maxAge: 10 * 60 * 1000, //3min
   });
   //? return accessToken in res
   return res.status(200).json({

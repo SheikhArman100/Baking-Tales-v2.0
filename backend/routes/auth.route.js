@@ -13,7 +13,7 @@ router.post("/verifyOTP",verifyOtp)
 router.post("/register",registerUser)
 
 //sign in
-router.get("/signin",handleSignin)
+router.post("/signin",handleSignin)
 
 //sign out
 router.get("/signout",handleSignout)
