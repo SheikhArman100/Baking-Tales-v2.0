@@ -19,7 +19,7 @@ const Drawer = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <article className="menu  w-[15rem] h-screen [background:hsl(0,0%,8%)] flex flex-col items-center py-5">
+        <article className="menu  w-[15rem] h-screen [background:hsl(0,0%,8%)] border border-gray-600 flex flex-col items-center py-5">
           <Logo />
           <section className="w-full flex-1 flex flex-col mt-5 px-4 gap-y-10">
             <div className="">
