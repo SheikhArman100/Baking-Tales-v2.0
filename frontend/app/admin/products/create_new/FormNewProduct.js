@@ -1,43 +1,154 @@
+"use client"
+import { Badge } from "@/Components/ui/badge.jsx";
+import { Checkbox } from "@/Components/ui/checkbox.jsx";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/Components/ui/dropdown-menu.jsx";
 import { Input } from "@/Components/ui/input.jsx";
 import { Label } from "@/Components/ui/label.jsx";
 import { RadioGroup, RadioGroupItem } from "@/Components/ui/radio-group.jsx";
 import { Textarea } from "@/Components/ui/textarea.jsx";
-import jarcakeIcon from "@/public/assets/jarcakeIcon.svg";
-import Image from "next/image.js";
+
+import { ChevronsUpDown, DollarSign } from "lucide-react";
+import { useState } from "react";
 
 const FormNewProduct = () => {
   return (
-    <form className="mt-8 flex flex-col gap-y-1">
-      {/* -----------------------title--------------------------------------------------------- */}
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="title">Title</Label>
-        <Input type="text" id="title" className="bg-transparent" />
-        <p className="text-xs text-red-500">*Add a title</p>
-      </div>
+    <form autoComplete="off" className="mt-8 flex flex-col gap-y-1">
+      <section>
+        {/* -----------------------title--------------------------------------------------------- */}
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="title">Title</Label>
+          <Input type="text" id="title" className="bg-transparent" />
+          <p className="text-xs text-red-500">*Add a title</p>
+        </div>
 
-      {/* -----------------------description ------------------------------*/}
-      <div className="grid w-full gap-1.5">
-        <Label htmlFor="description">Description</Label>
-        <Textarea
-          id="description"
-          className="max-w-sm bg-transparent
+        {/* -----------------------description ------------------------------*/}
+        <div className="grid w-full gap-1.5">
+          <Label htmlFor="description">Description</Label>
+          <Textarea
+            id="description"
+            className="max-w-sm bg-transparent
         "
-        />
-        <p className="text-xs text-red-500">*Add a Description</p>
-      </div>
+          />
+          <p className="text-xs text-red-500">*Add a Description</p>
+        </div>
 
-      {/* -----------------------Category---------------------------- */}
-      <CategorySelect />
-      {/* --------------flavour----------------------------- */}
+        {/* -----------------------Category---------------------------- */}
+        <CategorySelect />
+        {/* --------------flavour----------------------------- */}
+        <FlavorSelect />
+        {/* ---------------------price--------------- */}
+        <div className="mt-1">
+          <Label>Price</Label>
+          <div className="w-full max-w-sm mt-1 py-2 rounded-md flex items-center gap-x-2 border border-input px-3">
+            <DollarSign className="h-4 w-4" />
+            <input type="text" id="price" className="bg-transparent flex-1" />
+          </div>
+          <p className="text-xs text-red-500 mt-1">*Add a price</p>
+        </div>
+        {/* -----------------------size------------------------ */}
+        <SelectSize />
+      </section>
+      <UploadImages />
     </form>
   );
 };
 
-const CategorySelect = () => {
+const UploadImages = () => {
+  return (
+    <section>
+      <Label> Images(5)</Label>
+    </section>
+  );
+};
+
+const SelectSize = () => {
   return (
     <div>
+      <Label>Available Sizes(in pound)</Label>
+      <div className="grid grid-cols-2 gap-2 mt-1">
+        <div className="flex items-center gap-x-2">
+          <Checkbox />
+          <Label>0.5</Label>
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Checkbox />
+          <Label>1.0</Label>
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Checkbox />
+          <Label>1.5</Label>
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Checkbox />
+          <Label>2.0</Label>
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Checkbox />
+          <Label>2.5</Label>
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Checkbox />
+          <Label>3.0</Label>
+        </div>
+      </div>
+      <p className="text-xs text-red-500 mt-1">
+        *Select all the available sizes
+      </p>
+    </div>
+  );
+};
+
+const FlavorSelect = () => {
+  const [selectedFlavours, setSelectedFlavours] = useState({
+    chocolate: false,
+    vanilla: false,
+    red_velvet: false,
+  });
+  let selected= Object.keys(selectedFlavours).filter(key => selectedFlavours[key]);
+   const handleCheckboxChange = (flavor) => {
+    setSelectedFlavours((prevState) => ({ ...prevState, [flavor]: !prevState[flavor] }));
+  };
+  return (
+    <div className="flex flex-col items-start mt-1.5">
+      <Label>Available Flavors</Label>
+      <DropdownMenu className="">
+        <DropdownMenuTrigger asChild>
+          <button className=" w-full max-w-sm mt-1 py-2 rounded-md flex items-center justify-between border border-input px-3">
+           {selected.length===0?<p className="text-gray-300 text-sm">Select flavours</p>:
+           <div className="flex items-center gap-x-1 flex-wrap">{selected.map((value,index)=>(
+            <Badge key={index} className={` text-white ${value==="chocolate"?"bg-amber-700":value==="vanilla"?"bg-yellow-500":"bg-red-500"}`}>{value}</Badge>
+           ))}</div>} 
+            <ChevronsUpDown className="h-4 w-4" />
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-full p-4 flex flex-col gap-y-3 font2">
+          <div className="flex items-center gap-x-2">
+            <Checkbox checked={selectedFlavours.chocolate} onCheckedChange={()=>handleCheckboxChange("chocolate")} />
+            <Label>Chocolate</Label>
+          </div>
+          <div className="flex items-center gap-x-2">
+            <Checkbox  checked={selectedFlavours.vanilla} onCheckedChange={()=>handleCheckboxChange("vanilla")}/>
+            <Label>Vanilla</Label>
+          </div>
+          <div className="flex items-center gap-x-2">
+            <Checkbox checked={selectedFlavours.red_velvet} onCheckedChange={()=>handleCheckboxChange("red_velvet")}/>
+            <Label>Red Velvet</Label>
+          </div>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <p className="text-xs text-red-500 mt-1">*Select at least one flavour</p>
+    </div>
+  );
+};
+const CategorySelect = () => {
+  return (
+    <div className="w-full max-w-sm md:max-w-lg">
       <Label>Category</Label>
-      <RadioGroup defaultValue="cake" className="grid grid-cols-3 mt-1">
+      <RadioGroup className="grid grid-cols-3 mt-1">
         <div>
           <RadioGroupItem value="cake" id="cake" className="peer sr-only" />
           <Label

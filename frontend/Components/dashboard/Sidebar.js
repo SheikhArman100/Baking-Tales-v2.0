@@ -59,7 +59,7 @@ export const sidebarProductItems = [
 
 const Sidebar = () => {
   return (
-    <article className="hidden md:flex flex-col items-center md:w-[13rem] lg:w-[15rem] h-full border-r border-gray-500 py-5 ">
+    <article className="hidden md:flex h-screen flex-col items-center md:w-[13rem] lg:w-[15rem] h-full border-r border-gray-500 py-5 ">
       <Logo />
       <section className="w-full flex-1 flex flex-col gap-y-8 py-8 px-6">
         <div className="">
