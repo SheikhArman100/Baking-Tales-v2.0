@@ -30,3 +30,24 @@ export const otpSchema = z.object({
   otp5: z.string().nonempty("can not ne empty"),
   otp6: z.string().nonempty("can not ne empty"),
 });
+
+//create FormNewProduct
+export const createProductSchema=z.object({
+  title:z.string().nonempty("Add a title"),
+  description:z.string().nonempty("Add a description"),
+  category:z.string().nonempty("Select a category"),
+  flavors:z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "You have to select at least one flavor",
+  }),
+  price:z.coerce.number().refine(
+    (val)=>!isNaN(val) && val > 0,{
+      message: "Price must be a valid integer and greater than 0",
+    }
+  ),
+  sizes:z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "You have to select at least one size",
+  }),
+  images:z.array(z.string()).refine((value) => value.length===5, {
+    message: "You have to add total 5 images",
+  }),
+})

@@ -1,11 +1,35 @@
+"use client";
 import Button from "@/Components/Button";
 import Card from "@/Components/Card";
 import { ArrowRight, Plus, Star } from "lucide-react";
 import cakeIcon from "../../public/assets/cakeIcon.svg";
 import cakeBgRemove from "../../public/assets/cake1_bgRemove.png";
-import cake1 from "../../public/assets/cake1.jpg"
+import cake1 from "../../public/assets/cake1.jpg";
+import useProducts from "@/hooks/useProducts.js";
 
 const FeaturedItem = () => {
+  const { data, isPending, error } = useProducts();
+
+  if (isPending) {
+    return "Loading...";
+  }
+  if (error) {
+    return "An error has occurred: ";
+  }
+
+  const products = data?.products;
+  // console.log(products)
+
+  //filter out featured products list
+  const featuredItems = Object.values(
+    products?.reduce((acc, product) => {
+      if (!acc[product.category]) {
+        acc[product.category] = product;
+      }
+      return acc;
+    }, {})
+  );
+
   return (
     <section className="w-full h-full py-8 px-2 md:px-[4rem]">
       <div className="flex flex-col items-center">
@@ -19,7 +43,7 @@ const FeaturedItem = () => {
 
         <h3 className="text-3xl text-accentColor2 font2">Featured</h3>
         <div className="w-full flex justify-end">
-          <Button className="hidden md:flex ">
+          <Button className="hidden md:flex " href="/shop">
             <Button.Border1 />
             <Button.Border2 />
             <Button.Title>See All</Button.Title>
@@ -30,13 +54,13 @@ const FeaturedItem = () => {
         </div>
       </div>
       <div className="p-8 flex flex-wrap justify-center gap-y-4 gap-x-4 md:gap-x-8">
-        {[...Array(4).keys()].map((i) => (
+        {featuredItems.map((item, i) => (
           <Card key={i}>
             <Card.CardContainer>
-              <Card.CategoryIcon category="cake"/>
-              <Card.BgRemoveImage bgRemoveImage={cakeBgRemove} />
-              <Card.CardInfo title="Birthday Cake" price="99.9" />
-              <Card.CardImage cardImage={cake1}/>
+              <Card.CategoryIcon category={item.category} />
+              <Card.BgRemoveImage bgRemoveImage={item.images[0]} />
+              <Card.CardInfo title={item.title} price={item.price} />
+              <Card.CardImage cardImage={item.images[1]} />
               <Card.CardButtonWrapper>
                 <Button>
                   <Button.Border1 className="bg-accentColor2 border-[0.1px]  border-stone-500" />

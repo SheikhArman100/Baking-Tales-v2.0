@@ -28,8 +28,8 @@ const CardContainer=({className,children})=>{
 }
 const CategoryIcon=({className,category})=>{
     return(
-        <div className={twMerge("h-10 w-10 border p-2 border-black border-dotted rounded-full flex items-center justify-center group-hover/card:hidden transition-all",className)}>
-            {category==="Cupcake"?<Image src={cupcakeIcon} alt="cupcake category icon" className="h-full w-full"/>:category==="Chocolate bar"?<Image src={chocolatbarIcon} alt="category icon" className="h-full w-full"/>:category==="Jarcake"?<Image src={jarcakeIcon} alt="category icon" className="h-full w-full"/>:<Image src={cakeIcon} alt="category icon" className="h-full w-full"/>}
+        <div className={twMerge("h-10 w-10 border p-2  border-black border-dotted rounded-full flex items-center justify-center group-hover/card:hidden transition-all",className)}>
+            {category==="cupcake"?<Image src={cupcakeIcon} alt="cupcake category icon" className="h-full w-full"/>:category==="jarcake"?<Image src={jarcakeIcon} alt="category icon" className="h-full w-full"/>:<Image src={cakeIcon} alt="category icon" className="h-full w-full"/>}
         </div>
     )
 
@@ -45,10 +45,12 @@ const CardInfo=({className,title,price})=>{
 }
 const BgRemoveImage=({className,bgRemoveImage})=>{
     return(
-        <div className={twMerge(" h-32 w-32 group-hover/card:hidden transition-all",className)}>
+        <div className={twMerge("relative h-32 w-32 group-hover/card:hidden transition-all",className)}>
         <Image
             src={bgRemoveImage}
             alt="card image bg remove"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-center w-full h-full"
           />
 
@@ -67,7 +69,8 @@ const CardImage=({className,cardImage})=>{
           src={cardImage}
           alt="card image hover"
           className="w-full h-full object-cover"
-          placeholder="blur"
+          fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
     );

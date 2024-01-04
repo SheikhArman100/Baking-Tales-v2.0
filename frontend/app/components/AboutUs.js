@@ -3,17 +3,21 @@ import React from "react";
 import { Star } from "lucide-react";
 
 import AnimatedAboutUs from "@/Components/AnimatedAboutUs";
-import LocalImage from "@/Components/LocalImage.js";
+import AboutUsImage from "@/public/assets/aboutUsImage.jpg"
+import Image from "next/image.js";
+
 
 
 const AboutUs = () => {
   return (
     <section className="h-[150vh] md:h-screen w-full flex flex-col md:flex-row-reverse  md:justify-center py-4 px-4 md:py-[3rem]">
       <div className="relative h-[50%] w-full md:h-full md:w-[50%] xl:md:w-[40%]">
-        <LocalImage
-          src="/assets/aboutUsImage.jpg"
+        <Image
+          src={AboutUsImage}
           alt="about us image"
-          className="rounded object-fit"
+          className="rounded object-fit w-full h-full"
+          placeholder="blur"
+          priority
         />
       </div>
       <div className="relative h-full w-full md:w-[50%] flex items-center justify-center">

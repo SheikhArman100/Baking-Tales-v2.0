@@ -1,15 +1,18 @@
+"use client"
 import Button from "@/Components/Button";
 import Card from "@/Components/Card";
 import CategoriesList from "@/Components/CategoriesList";
 import Filter from "@/Components/Filter";
 import FilterMobile from "@/Components/FilterMobile";
+import useProducts from "@/hooks/useProducts.js";
 import { products } from "@/libs/Data/data";
 import { Plus } from "lucide-react";
 
 const Shop = () => {
+  const{data,isPending,error}=useProducts()
   return (
     <div className="w-full h-full md:pt-[6rem] px-8 lg:px-[2rem] xl:px-[4rem] text-accentColor2">
-      <div className="w-full flex flex-col items-center gap-y-4 mt-4">
+      <div className="w-full flex flex-col items-center gap-y-2 mt-4">
         <h2 className=" text-4xl mt-3 w-full text-center text-accentColor">
           Shop All
         </h2>
@@ -18,10 +21,11 @@ const Shop = () => {
           your life. Proudly designed in Los Angeles and Woman Owned. We donate
           1% of all sales to environmental non-profits.
         </p>
+        <div className="h-full w-[0.1rem] bg-yellow-600" />
       </div>
       <div className="w-full h-[0.1rem] bg-yellow-600 mt-4" />
-      <div className="relative w-full flex flex-col md:flex-row ">
-        <div className=" md:py-[4rem] md:px-2 md:w-2/5 md:max-w-xs lg:px-[2rem]">
+      {isPending?<div className="w-full h-screen flex item-center justify-center">Loading..........</div>:<div className="mt-6 w-fit pb-8  mx-auto ">
+        {/* <div className=" md:py-[4rem] md:px-2 md:w-2/5 md:max-w-xs lg:px-[2rem]">
           <h3 className=" text-base p-2 border-b border-white hidden md:flex">
             Select Category
           </h3>
@@ -30,10 +34,10 @@ const Shop = () => {
             <FilterMobile />
           </div>
           <Filter />
-        </div>
-        <div className="h-full w-[0.1rem] bg-yellow-600" />
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3  sm:gap-4 gap-2 mt-6 md:mt-8 lg:mt-12 sm:px-[2rem] md:px-[5rem] lg:px-[7rem]    md:gap-8">
-          {products.map((product, index) => {
+        </div> */}
+        
+        <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-4 md:gap-8 ">
+          {data.products.map((product, index) => {
             return (
               <Card
                 key={index}
@@ -41,11 +45,11 @@ const Shop = () => {
               >
                 <Card.CardContainer className="">
                   <Card.CategoryIcon
-                    category={product.categories}
+                    category={product.category}
                     className="hidden"
                   />
                   <Card.BgRemoveImage
-                    bgRemoveImage={product.bgRemove}
+                    bgRemoveImage={product.images[0]}
                     className=" w-28 h-28 sm:h-32 sm:w-32 md:w-36 md:h-36 lg:h-44 lg:w-44"
                   />
                   <Card.CardInfo
@@ -53,7 +57,7 @@ const Shop = () => {
                     price={product.price}
                     className="text-xs sm:text-sm lg:text-base"
                   />
-                  <Card.CardImage cardImage={product.img} />
+                  <Card.CardImage cardImage={product.images[1]} />
                   <Card.CardButtonWrapper>
                     <Button
                       className="h-10 w-28 md:h-12 md:w-40"
@@ -77,7 +81,7 @@ const Shop = () => {
             );
           })}
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

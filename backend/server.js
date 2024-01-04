@@ -8,6 +8,7 @@ const logger=require("./middlewares/logger")
 
 //import  routers
 const authRouter=require("./routes/auth.route")
+const productRouter=require("./routes/product.route.js")
 
 
 
@@ -18,9 +19,9 @@ const app = express();
 //middleware for cookies
 app.use(cookieParser());
 // built-in middleware for json 
-app.use(express.json());
+app.use(express.json({ limit: '20mb' }));
 // built-in middleware to handle urlencoded form data
-app.use(express.urlencoded({ extended: false })); //why false?
+app.use(express.urlencoded({ limit: '20mb',extended: false })); //why false?
 
 // Cross Origin Resource Sharing
 app.use(
@@ -36,6 +37,7 @@ app.use(
 
 //routes
 app.use("/api/v1.0.0/auth", authRouter);
+app.use("/api/v1.0.0/product", productRouter);
 
 
 

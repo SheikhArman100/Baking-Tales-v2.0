@@ -7,10 +7,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
-      // {
-      //   protocol:"http",
-      //   hostname:"localhost:3000"
-      // }
+      {
+        protocol:"https",
+        hostname:"res.cloudinary.com"
+      }
     ],
   },
 };

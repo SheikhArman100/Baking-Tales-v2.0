@@ -32,6 +32,20 @@ model Otp {
   updatedAt DateTime @updatedAt
 }
 
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String   @unique
+  description String
+  category    String
+  flavors     String[]
+  sizes       String[]
+  price       Int
+  images      String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+
 enum Role {
   USER
   ADMIN
