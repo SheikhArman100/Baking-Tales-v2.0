@@ -2,28 +2,21 @@
 import Button from "@/Components/Button";
 import Card from "@/Components/Card";
 import { ArrowRight, Plus, Star } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import useProducts from "@/hooks/useProducts.js";
-import cake1 from "@/public/assets/cake1.jpg";
-import cakeBgRemove from "@/public/assets/cake1_bgRemove.png";
 import CategoryImage from "@/public/assets/categoryImage.jpg";
 import Image from "next/image.js";
 const Categories = () => {
   const { data, isPending, error } = useProducts();
   const [filterCat,setFilterCat]=useState("cake")
-  if (isPending) {
-    return "Loading...";
-  }
-  if (error) {
-    return "An error has occurred: ";
-  }
+ 
 
   const products = data?.products;
   // console.log(products)
 
   //filter out featured products list
-  const featuredItems = Object.values(
+  const featuredItems = products && Object.values(
     products?.reduce((acc, product) => {
       if (!acc[product.category]) {
         acc[product.category] = product;
@@ -33,13 +26,18 @@ const Categories = () => {
   );
   console.log(featuredItems)
   
-  const filteredProducts = featuredItems.filter(
+  const filteredProducts = featuredItems?.filter(
       (item) => item.category === filterCat
     );
   console.log(filteredProducts)
  
   return (
-    <section className="relative w-full h-screen flex flex-col md:flex-row gap-y-16">
+    <article className="relative w-full h-screen">
+      {isPending?<section className="w-full h-full flex items-center justify-center">
+        <span className="loading loading-dots loading-lg text-warning"></span>
+      </section>:error?<section className="w-full h-full flex items-center justify-center">
+        <p className="text-3xl text-textColor font2">Something went wrong!</p>
+      </section>:<section className="w-full h-full flex flex-col md:flex-row gap-y-16">
       <div className="relative w-full h-[50%] md:h-full bg-blue-400 md:w-1/2">
         <Image
           src={CategoryImage}
@@ -101,7 +99,10 @@ const Categories = () => {
           </Button>
         </div>
       </div>
-    </section>
+    </section>}
+
+    </article>
+    
   );
 };
 

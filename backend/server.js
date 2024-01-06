@@ -27,7 +27,8 @@ app.use(express.urlencoded({ limit: '20mb',extended: false })); //why false?
 app.use(
   cors({
     credentials: true,
-    origin: ["https://baking-tales-v2.vercel.app"],//!write frontend route here
+    origin: ["https://baking-tales-v2.vercel.app",
+  "http://localhost:3000"],//!write frontend route here
   })
 );
 

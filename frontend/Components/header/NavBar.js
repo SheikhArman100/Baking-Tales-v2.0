@@ -18,8 +18,8 @@ const navItems = [
     href: "/shop",
   },
   {
-    name: "Blogs",
-    href: "/blogs",
+    name: "Journals",
+    href: "/journals",
   },
 ];
 

@@ -16,8 +16,8 @@ export default function Home() {
         <Header />
         <HomeContainer>
           <FeaturedItem />
-          <Categories />
           <AboutUs />
+          <Categories />
           <Journal />
           <Services />
         </HomeContainer>

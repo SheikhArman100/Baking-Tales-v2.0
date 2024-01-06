@@ -1,18 +1,13 @@
 "use client";
 import Button from "@/Components/Button";
 import Card from "@/Components/Card";
-import { ArrowRight, Plus, Star } from "lucide-react";
-import cakeIcon from "../../public/assets/cakeIcon.svg";
-import cakeBgRemove from "../../public/assets/cake1_bgRemove.png";
-import cake1 from "../../public/assets/cake1.jpg";
 import useProducts from "@/hooks/useProducts.js";
+import { ArrowRight, Plus, Star } from "lucide-react";
 
 const FeaturedItem = () => {
   const { data, isPending, error } = useProducts();
 
-  if (isPending) {
-    return "Loading...";
-  }
+
   if (error) {
     return "An error has occurred: ";
   }
@@ -21,7 +16,7 @@ const FeaturedItem = () => {
   // console.log(products)
 
   //filter out featured products list
-  const featuredItems = Object.values(
+  const featuredItems =products && Object.values(
     products?.reduce((acc, product) => {
       if (!acc[product.category]) {
         acc[product.category] = product;
@@ -31,7 +26,7 @@ const FeaturedItem = () => {
   );
 
   return (
-    <section className="w-full h-full py-8 px-2 md:px-[4rem]">
+    <section className="w-full min-h-screen flex flex-col    justify-center py-8 md:py-[4rem] px-2 md:px-[4rem]">
       <div className="flex flex-col items-center">
         <div className="flex items-center justify-center gap-x-1">
           <Star fill="#eab308" stroke="none" className="h-4 w-4" />
@@ -53,7 +48,8 @@ const FeaturedItem = () => {
           </Button>
         </div>
       </div>
-      <div className="p-8 flex flex-wrap justify-center gap-y-4 gap-x-4 md:gap-x-8">
+      <div className="w-full flex-1 flex items-center justify-center">
+        {isPending?<span className="loading loading-spinner loading-lg text-warning "></span>:error?<p className="text-3xl text-textColor font2">Something went wrong</p>:<div className="p-8 flex flex-wrap justify-center gap-y-4 gap-x-4 md:gap-x-8">
         {featuredItems.map((item, i) => (
           <Card key={i}>
             <Card.CardContainer>
@@ -76,7 +72,9 @@ const FeaturedItem = () => {
             </Card.CardContainer>
           </Card>
         ))}
-      </div>
+      </div>}
+
+     </div> 
     </section>
   );
 };

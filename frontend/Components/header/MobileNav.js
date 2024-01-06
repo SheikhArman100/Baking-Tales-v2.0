@@ -14,6 +14,7 @@ import Logo from "./Logo.js";
 import MenuIcon from "./IconCircleBorder.js";
 import { Menu, X } from "lucide-react";
 import IconCircleBorder from "./IconCircleBorder.js";
+import Link from "next/link.js";
 const navItems = [
    {
     name: "Home",
@@ -25,11 +26,11 @@ const navItems = [
   },
   {
     name: "Products",
-    href: "/products",
+    href: "/shop",
   },
   {
-    name: "Blogs",
-    href: "/blogs",
+    name: "Journals",
+    href: "/journals",
   }
 ]
 
@@ -74,11 +75,11 @@ const MobileNav = () => {
             <motion.ul variants={linkContainerSlide}  className="w-full flex-1 flex flex-col items-center justify-center gap-y-4 text-center">
               {navItems.map((item, index) => {
                 return (
-                  <div key={index} className="overflow-hidden  w-full py-2" >
+                  <Link href={item.href} key={index} className="overflow-hidden  w-full py-2" >
                     <motion.li variants={linkSlide} className="text-5xl font-medium  ">
                     {item.name}
                   </motion.li>
-                  </div>
+                  </Link>
                 );
               })}
             </motion.ul>
