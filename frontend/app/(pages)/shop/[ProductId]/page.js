@@ -1,5 +1,8 @@
 "use client";
+import Button from "@/Components/Button.js";
+import Card from "@/Components/Card.js";
 import useProducts from "@/hooks/useProducts.js";
+import { Heart, Plus } from "lucide-react";
 import Image from "next/image";
 import { AccordionComponent } from "./AccordionComponent";
 import AddToCartButton from "./AddToCartButton";
@@ -9,11 +12,13 @@ import SizeSelect from "./SizeSelect";
 
 const Product = ({ params }) => {
   const { data, isPending, error } = useProducts();
-  const product = data?.products.find(
-    (product) => product.id == params.ProductId
+  const products = data?.products;
+
+  const product = products?.find((product) => product.id == params.ProductId);
+  const similarProducts = products?.filter(
+    (item) => item.category === product.category && item.title !== product.title
   );
-  // const similarProducts=data?.products.find((item)=>item.category===product.category)
-  console.log(product);
+  
   return (
     <section className="w-full min-h-screen flex flex-col md:pt-[7rem] px-8 py-8  lg:px-[2rem] xl:px-[4rem]">
       <h2 className=" text-4xl mt-3 w-full text-center text-accentColor">
@@ -35,7 +40,6 @@ const Product = ({ params }) => {
                 src={product.images[1]}
                 alt={product.title}
                 fill
-                
                 priority
                 className="w-full h-full object-cover"
               />
@@ -48,7 +52,6 @@ const Product = ({ params }) => {
                 >
                   <Image
                     fill
-                    
                     className="w-full h-full object-cover"
                     src={product.images[i]}
                   />
@@ -64,31 +67,64 @@ const Product = ({ params }) => {
               ${product.price}
             </span>
             <AccordionComponent name="Description" desc={product.description} />
-            <FlavorSelect />
-            <SizeSelect />
+            <FlavorSelect flavors={product.flavors}/>
+            <SizeSelect sizes={product.sizes}/>
             <Quantity />
-            <div className="flex items-center justify-center mt-4">
+            <div className=" flex items-center justify-center gap-x-4 mt-4">
               <AddToCartButton />
+              <button className="p-2 border border-white mt-4 ">
+                <Heart strokeWidth="1" className="stroke-white "/>
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* <div>
+     {similarProducts? <div>
         <h2 className=" text-3xl mt-8 md:mt-16 w-full text-center text-accentColor">
           Similar Products
         </h2>
         <div className="w-full grid grid-cols-2 md:grid-cols-4   sm:gap-4 gap-2 mt-5   sm:px-[2rem] md:px-[5rem] lg:px-[7rem]    md:gap-8">
-          {[1,2,3].map((i) => (
-            <div
-              key={i}
-              className="relative h-44 sm:h-52 md:h-56  lg:h-64 xl:h-68 w-full bg-gray-600"
+          {similarProducts?.map((item, index) => (
+            <Card
+              key={index}
+              className="h-44 sm:h-52 md:h-56  lg:h-64 xl:h-68 w-full "
             >
-              <Image/>
-            </div>
+              <Card.CardContainer className="">
+                <Card.CategoryIcon
+                  category={item.category}
+                  className="hidden"
+                />
+                <Card.BgRemoveImage
+                  bgRemoveImage={item.images[0]}
+                  className=" w-28 h-28 sm:h-32 sm:w-32 md:w-36 md:h-36 lg:h-44 lg:w-44"
+                />
+                <Card.CardInfo
+                  title={item.title}
+                  price={item.price}
+                  className="text-xs sm:text-sm lg:text-base"
+                />
+                <Card.CardImage cardImage={item.images[1]} />
+                <Card.CardButtonWrapper>
+                  <Button
+                    className="h-10 w-28 md:h-12 md:w-40"
+                    href={`/shop/${item.id}`}
+                  >
+                    <Button.Border1 className="bg-accentColor2 border-[0.1px]  border-stone-500" />
+                    <Button.Border2 className="bg-accentColor2 border-[0.1px]   border-gray-500" />
+                    <Button.Title className="text-black font-medium text-xs md:text-sm">
+                      View Details
+                    </Button.Title>
+                    <Button.Icon className=" ">
+                      <Plus strokeWidth="1" className="stroke-black h-4 w-4 " />
+                    </Button.Icon>
+                  </Button>
+                </Card.CardButtonWrapper>
+              </Card.CardContainer>
+            </Card>
           ))}
         </div>
-      </div> */}
+      </div>:null}
     </section>
   );
 };

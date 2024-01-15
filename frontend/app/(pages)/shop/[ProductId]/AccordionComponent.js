@@ -8,7 +8,7 @@ export const AccordionComponent= ({name,desc}) => {
         {name}
       </AccordionItem>
       <AccordionPanel id="panel-1">
-        <p className="mb-4">
+        <p className="mb-4 font2">
          {desc}
         </p>
       </AccordionPanel>

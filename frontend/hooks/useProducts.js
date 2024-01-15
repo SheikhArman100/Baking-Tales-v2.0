@@ -5,7 +5,6 @@ const useProducts = () => {
   return useQuery({
     queryKey:["products"],
     queryFn:async()=>{
-       await new Promise((resolve) => setTimeout(resolve, 5000));
         const response=await axiosPublic.get("product/all")
         return response.data
     }

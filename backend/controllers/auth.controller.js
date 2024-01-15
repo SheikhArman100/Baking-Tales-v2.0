@@ -12,7 +12,7 @@ const generateOTP = async (req, res) => {
   try {
     const { email, register } = req.body;
 
-    //? check is email or phoneNumber already exist in database if this is for register
+    //? check is email  already exist in database if this is for register=true
     const existedUser = await prisma.user.findFirst({
       where: {
         email: email,
@@ -215,7 +215,7 @@ const registerUser = async (req, res) => {
             role: newUser.role,
           },
           process.env.ACCESS_TOKEN_SECRET,
-          { expiresIn: "120s" }
+          { expiresIn: "300s" }
         );
         const refreshToken = jwt.sign(
           {
@@ -242,7 +242,7 @@ const registerUser = async (req, res) => {
           httpOnly: true,
           sameSite: "None",
           secure: true,
-          maxAge: 10 * 60 * 1000, //3min
+          maxAge: 10 * 60 * 1000, //10min
         });
 
         //? return accessToken in res
@@ -269,7 +269,7 @@ const registerUser = async (req, res) => {
 
 //signin user
 const handleSignin = async (req, res) => {
-  //?extract email and password from the body of req and check if any value is missing
+  
   const { email, isVerified } = req.body;
   if (!email) {
     return res.status(400).json({
@@ -290,6 +290,11 @@ const handleSignin = async (req, res) => {
       email: email,
     },
   });
+   if (!findUser)
+      return res.status(401).json({
+        status:"failed",
+        message: "Email  doesn't match with any account",
+      });
 
   //?creating accessToken and refreshToken
   const accessToken = jwt.sign(
@@ -299,7 +304,7 @@ const handleSignin = async (req, res) => {
       role: findUser.role,
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "120s" }
+    { expiresIn: "300s" }
   );
   const refreshToken = jwt.sign(
     {
@@ -326,7 +331,7 @@ const handleSignin = async (req, res) => {
     httpOnly: true,
     sameSite: "None",
     secure: true,
-    maxAge: 10 * 60 * 1000, //3min
+    maxAge: 10 * 60 * 1000, //10min
   });
   //? return accessToken in res
   return res.status(200).json({
@@ -339,12 +344,12 @@ const handleSignin = async (req, res) => {
 //signout
 const handleSignout = async (req, res) => {
   const cookies = req.cookies;
-  if (!cookies?.laundryMamaJwt)
+  if (!cookies?.BakingTalesJwt)
     return res.status(401).json({
       status: "failed",
       message: "No refresh token found",
     }); //No content
-  const refreshToken = cookies.laundryMamaJwt;
+  const refreshToken = cookies.BakingTalesJwt;
 
   //?Is refreshToken in db?
   const findUser = await prisma.user.findUnique({
@@ -353,7 +358,7 @@ const handleSignout = async (req, res) => {
     },
   });
   if (!findUser) {
-    res.clearCookie("laundryMamaJwt", {
+    res.clearCookie("BakingTalesJwt", {
       httpOnly: true,
       sameSite: "None",
       secure: true,
@@ -373,7 +378,7 @@ const handleSignout = async (req, res) => {
       refreshToken: "",
     },
   });
-  res.clearCookie("laundryMamaJwt", {
+  res.clearCookie("BakingTalesJwt", {
     httpOnly: true,
     sameSite: "None",
     secure: true,
@@ -388,12 +393,12 @@ const handleSignout = async (req, res) => {
 //update expired access token
 const updateAccessToken = async (req, res) => {
   const cookies = req.cookies;
-  if (!cookies?.laundryMamaJwt)
+  if (!cookies?.BakingTalesJwt)
     return res.status(401).json({
       status: "failed",
       message: "No refresh token found",
     }); //No content
-  const refreshToken = cookies.laundryMamaJwt;
+  const refreshToken = cookies.BakingTalesJwt;
 
   //?Is refreshToken in db?
   const findUser = await prisma.user.findFirst({

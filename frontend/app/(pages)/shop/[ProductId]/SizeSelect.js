@@ -1,7 +1,7 @@
-import { sizes } from "@/libs/Data/data";
+
 import React from "react";
 
-const SizeSelect = () => {
+const SizeSelect = ({sizes}) => {
   return (
     <div>
       <h4 className="text-base p-2 text-accentColor2">Size (in Pound) :</h4>

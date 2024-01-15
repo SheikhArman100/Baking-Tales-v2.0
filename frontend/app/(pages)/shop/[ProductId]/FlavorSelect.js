@@ -1,8 +1,8 @@
-import { flavors } from "@/libs/Data/data";
+
 import { cn } from "@/libs/utils";
 import React from "react";
 
-const FlavorSelect = () => {
+const FlavorSelect = ({flavors}) => {
   return (
     <div>
       <h4 className="text-base p-2 text-accentColor2 bg-ye">Flavor :</h4>

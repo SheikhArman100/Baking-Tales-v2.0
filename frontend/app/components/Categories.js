@@ -24,12 +24,12 @@ const Categories = () => {
       return acc;
     }, {})
   );
-  console.log(featuredItems)
+ 
   
   const filteredProducts = featuredItems?.filter(
       (item) => item.category === filterCat
     );
-  console.log(filteredProducts)
+ 
  
   return (
     <article className="relative w-full h-screen">
