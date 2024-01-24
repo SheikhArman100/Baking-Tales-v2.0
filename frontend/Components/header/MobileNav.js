@@ -12,7 +12,7 @@ import { useState } from "react";
 import CartButton from "./CartButton.js";
 import Logo from "./Logo.js";
 import MenuIcon from "./IconCircleBorder.js";
-import { Menu, X } from "lucide-react";
+import { Heart, Menu, X } from "lucide-react";
 import IconCircleBorder from "./IconCircleBorder.js";
 import Link from "next/link.js";
 const navItems = [
@@ -57,7 +57,12 @@ const MobileNav = () => {
         <div className=" col-span-1 flex items-center justify-center ">
           <Logo/>
         </div>
-        <div className=" col-span-1 flex items-center justify-center  ">
+        <div className=" col-span-1 flex items-center justify-center gap-x-2 ">
+        <Link href="/wishlist">
+          <IconCircleBorder>
+            <Heart className="h-[1.5rem]  aspect-square stroke-white" />
+          </IconCircleBorder>
+        </Link>
           <CartButton />
         </div>
       </div>
