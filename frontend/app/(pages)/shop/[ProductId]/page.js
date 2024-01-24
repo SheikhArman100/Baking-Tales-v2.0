@@ -2,13 +2,11 @@
 import Button from "@/Components/Button.js";
 import Card from "@/Components/Card.js";
 import useProducts from "@/hooks/useProducts.js";
-import { Heart, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import Image from "next/image";
 import { AccordionComponent } from "./AccordionComponent";
-import AddToCartButton from "./AddToCartButton";
-import FlavorSelect from "./FlavorSelect";
-import Quantity from "./Quantity";
-import SizeSelect from "./SizeSelect";
+
+import FormCart from "./FormCart.js";
 
 const Product = ({ params }) => {
   const { data, isPending, error } = useProducts();
@@ -67,15 +65,7 @@ const Product = ({ params }) => {
               ${product.price}
             </span>
             <AccordionComponent name="Description" desc={product.description} />
-            <FlavorSelect flavors={product.flavors}/>
-            <SizeSelect sizes={product.sizes}/>
-            <Quantity />
-            <div className=" flex items-center justify-center gap-x-4 mt-4">
-              <AddToCartButton />
-              <button className="p-2 border border-white mt-4 ">
-                <Heart strokeWidth="1" className="stroke-white "/>
-              </button>
-            </div>
+            <FormCart product={product} productId={params.ProductId}/>
           </div>
         </div>
       )}

@@ -59,6 +59,8 @@ const FormOtp = () => {
       const response = await axiosPublic.post("auth/signin", {
         email: data.email,
         isVerified: data.isVerified,
+      },{
+        withCredentials:true
       });
       return response.data;
     },

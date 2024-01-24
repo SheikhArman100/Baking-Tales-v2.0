@@ -9,6 +9,9 @@ const getCarts = async (req, res) => {
       where: {
         userId: userId,
       },
+      include:{
+        product:true
+      }
     });
     return res.status(200).json({
       carts,
@@ -27,9 +30,9 @@ const getCarts = async (req, res) => {
 const addNewCart = async (req, res) => {
   try {
     const userId = req.id;
-    const { productId, quantity } = req.body;
+    const { productId, quantity,flavor,size } = req.body;
 
-    if (!productId || !quantity) {
+    if (!productId || !quantity ||!flavor ||!size) {
       return res.status(400).json({
         status: "failed",
         message: "Invalid or incomplete product data",
@@ -51,6 +54,8 @@ const addNewCart = async (req, res) => {
         userId: userId,
         productId: productId,
         quantity: quantity,
+        flavor:flavor,
+        size:size
       },
     });
     return res.status(200).json({
@@ -100,9 +105,9 @@ const updateCart = async (req, res) => {
 const deleteCart = async (req, res) => {
   try {
     const userId = req.id;
-    const { productId } = req.body;
+    const { cartId } = req.body;
 
-    if (!productId) {
+    if (!cartId) {
       return res.status(400).json({
         status: "failed",
         message: "Invalid or incomplete product data",
@@ -110,7 +115,7 @@ const deleteCart = async (req, res) => {
     }
     await prisma.cart.deleteMany({
       where: {
-        AND: [{ userId: userId }, { productId: productId }],
+        AND: [{ userId: userId }, { id: cartId }],
       },
     });
     return res.status(200).json({

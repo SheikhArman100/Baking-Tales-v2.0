@@ -215,7 +215,7 @@ const registerUser = async (req, res) => {
             role: newUser.role,
           },
           process.env.ACCESS_TOKEN_SECRET,
-          { expiresIn: "300s" }
+          { expiresIn: "60s" }
         );
         const refreshToken = jwt.sign(
           {
@@ -224,7 +224,7 @@ const registerUser = async (req, res) => {
             role: newUser.role,
           },
           process.env.REFRESH_TOKEN_SECRET,
-          { expiresIn: "600s" }
+          { expiresIn: "900s" }
         );
 
         //?Update the user in the database with the refresh token.
@@ -242,7 +242,7 @@ const registerUser = async (req, res) => {
           httpOnly: true,
           sameSite: "None",
           secure: true,
-          maxAge: 10 * 60 * 1000, //10min
+          maxAge: 15 * 60 * 1000, //10min
         });
 
         //? return accessToken in res
@@ -269,7 +269,6 @@ const registerUser = async (req, res) => {
 
 //signin user
 const handleSignin = async (req, res) => {
-  
   const { email, isVerified } = req.body;
   if (!email) {
     return res.status(400).json({
@@ -290,11 +289,11 @@ const handleSignin = async (req, res) => {
       email: email,
     },
   });
-   if (!findUser)
-      return res.status(401).json({
-        status:"failed",
-        message: "Email  doesn't match with any account",
-      });
+  if (!findUser)
+    return res.status(401).json({
+      status: "failed",
+      message: "Email  doesn't match with any account",
+    });
 
   //?creating accessToken and refreshToken
   const accessToken = jwt.sign(
@@ -304,7 +303,7 @@ const handleSignin = async (req, res) => {
       role: findUser.role,
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "300s" }
+    { expiresIn: "60s" }
   );
   const refreshToken = jwt.sign(
     {
@@ -313,7 +312,7 @@ const handleSignin = async (req, res) => {
       role: findUser.role,
     },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: "600s" }
+    { expiresIn: "900s" }
   );
 
   //?Update the user in the database with the refresh token.
@@ -331,7 +330,7 @@ const handleSignin = async (req, res) => {
     httpOnly: true,
     sameSite: "None",
     secure: true,
-    maxAge: 10 * 60 * 1000, //10min
+    maxAge: 15 * 60 * 1000, //10min
   });
   //? return accessToken in res
   return res.status(200).json({
@@ -418,7 +417,7 @@ const updateAccessToken = async (req, res) => {
     if (err || findUser.id !== decoded.id)
       return res.status(403).json({
         status: "failed",
-        message: "Invalid access token",
+        message: "Invalid refresh token",
       });
     const accessToken = jwt.sign(
       {
@@ -437,6 +436,59 @@ const updateAccessToken = async (req, res) => {
   });
 };
 
+//check user status
+const checkUserStatus = async (req, res) => {
+  try {
+    const cookies = req.cookies;
+
+    //no refresh token in cookies
+    if (!cookies?.BakingTalesJwt)
+      return res.status(401).json({
+        status: "failed",
+        message: "No refresh token found",
+      }); //No content
+
+    const refreshToken = cookies.BakingTalesJwt;
+
+    //Is the found refreshToken in db?
+    const findUser = await prisma.user.findFirst({
+      where: {
+        refreshToken: refreshToken,
+      },
+    });
+    if (!findUser) {
+      return res.status(403).json({
+        status: "failed",
+        message: "Not Authorized",
+      });
+    }
+
+    //verify the refresh token
+    jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET,
+      (err, decoded) => {
+        if (err || findUser.id !== decoded.id) {
+          return res.status(403).json({
+            status: "failed",
+            message: "Invalid refresh token",
+          });
+        }
+        return res.status(200).json({
+          status: "success",
+          message: "Authorized",
+        });
+      }
+    );
+  } catch (error) {
+    logger.error(error);
+    return res.status(500).json({
+      status: "failed",
+      message: "Something went wrong",
+    });
+  }
+};
+
 module.exports = {
   generateOTP,
   verifyOtp,
@@ -444,4 +496,5 @@ module.exports = {
   handleSignin,
   handleSignout,
   updateAccessToken,
+  checkUserStatus,
 };

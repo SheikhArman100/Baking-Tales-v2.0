@@ -1,4 +1,4 @@
-import { Heart, User2 } from "lucide-react";
+import { Heart, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import AnimatedLink from "./AnimatedLink";
 import CartButton from "./CartButton";
@@ -44,9 +44,9 @@ const NavBar = () => {
             <Heart className="h-[1.2rem] aspect-square" />
           </IconCircleBorder>
         </Link>
-        <Link href="auth/signin">
+        <Link href="/order">
           <IconCircleBorder>
-            <User2 className="h-[1.2rem] aspect-square" />
+            <ShoppingBag className="h-[1.2rem] aspect-square" />
           </IconCircleBorder>
         </Link>
         <div className="w-[0.01rem] h-[1.2rem] bg-textColor" />

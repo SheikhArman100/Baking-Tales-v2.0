@@ -51,3 +51,18 @@ export const createProductSchema=z.object({
     message: "You have to add total 5 images",
   }),
 })
+
+//cart item form
+export const cartSchema = z.object({
+  flavor: z.string({
+    required_error: "Add a flavor",
+  }),
+  size: z.string({
+    required_error: "Add a size",
+  }),
+  quantity:z.coerce.number().refine(
+    (val)=>!isNaN(val) && 11> val > 0,{
+      message: "You can not buy more than 10",
+    }
+  ),
+});

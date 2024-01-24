@@ -10,6 +10,9 @@ const getWishlist = async (req, res) => {
       where: {
         userId: userId,
       },
+      include:{
+        product:true
+      }
     });
     return res.status(200).json({
       wishlist,
