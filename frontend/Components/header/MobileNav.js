@@ -81,7 +81,7 @@ const MobileNav = () => {
               {navItems.map((item, index) => {
                 return (
                   <Link href={item.href} key={index} className="overflow-hidden  w-full py-2" >
-                    <motion.li variants={linkSlide} className="text-5xl font-medium  ">
+                    <motion.li variants={linkSlide} className="text-5xl font-medium font2 ">
                     {item.name}
                   </motion.li>
                   </Link>
