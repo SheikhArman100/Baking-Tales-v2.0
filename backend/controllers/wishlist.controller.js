@@ -5,15 +5,15 @@ const prisma = require("../prisma/client.js");
 const getWishlist = async (req, res) => {
   try {
     const userId = req.id;
-    logger.info(userId)
+    
 
     const wishlist = await prisma.wishlist.findMany({
       where: {
         userId: userId,
       },
-      // include:{
-      //   product:true
-      // }
+      include:{
+        product:true
+      }
     });
     return res.status(200).json({
       wishlist,
