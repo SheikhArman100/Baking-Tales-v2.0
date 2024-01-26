@@ -5,6 +5,7 @@ const prisma = require("../prisma/client.js");
 const getWishlist = async (req, res) => {
   try {
     const userId = req.id;
+    logger.info(userId)
 
     const wishlist = await prisma.wishlist.findMany({
       where: {

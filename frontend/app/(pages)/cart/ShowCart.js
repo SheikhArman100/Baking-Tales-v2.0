@@ -69,7 +69,7 @@ const ShowCart = () => {
           <p className="text-base font-semibold">Total</p>
           <span className="text-base font-medium">${totalAmount+10}</span>
         </div>
-        <Button className="mt-6 w-full ">
+        <Button className="mt-6 w-full " href="/checkout">
           <Button.Border1 className="bg-yellow-600" />
           <Button.Border2 className="bg-yellow-600" />
           <Button.Title className="text-base font-bold">

@@ -17,7 +17,7 @@ model User {
   phoneNumber  String     @unique
   isVerified   Boolean    @default(false)
   image        String?
-  address      String?
+  details      Json?     //address,city,houseDetails
   role         Role       @default(USER)
   refreshToken String?    @unique
   wishlist     Wishlist[]

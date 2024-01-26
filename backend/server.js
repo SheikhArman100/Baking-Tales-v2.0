@@ -8,6 +8,7 @@ const logger=require("./middlewares/logger")
 
 //import  routers
 const authRouter=require("./routes/auth.route")
+const userRouter=require("./routes/user.route.js")
 const productRouter=require("./routes/product.route.js")
 const wishlistRouter=require("./routes/wishlist.route.js")
 const cartRouter=require("./routes/cart.route.js")
@@ -41,6 +42,7 @@ app.use(
 
 //routes
 app.use("/api/v1.0.0/auth", authRouter);
+app.use("/api/v1.0.0/user",userRouter)
 app.use("/api/v1.0.0/product", productRouter);
 app.use("/api/v1.0.0/wishlist", wishlistRouter);
 app.use("/api/v1.0.0/cart", cartRouter);

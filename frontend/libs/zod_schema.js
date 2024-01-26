@@ -32,25 +32,23 @@ export const otpSchema = z.object({
 });
 
 //create FormNewProduct
-export const createProductSchema=z.object({
-  title:z.string().nonempty("Add a title"),
-  description:z.string().nonempty("Add a description"),
-  category:z.string().nonempty("Select a category"),
-  flavors:z.array(z.string()).refine((value) => value.some((item) => item), {
+export const createProductSchema = z.object({
+  title: z.string().nonempty("Add a title"),
+  description: z.string().nonempty("Add a description"),
+  category: z.string().nonempty("Select a category"),
+  flavors: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "You have to select at least one flavor",
   }),
-  price:z.coerce.number().refine(
-    (val)=>!isNaN(val) && val > 0,{
-      message: "Price must be a valid integer and greater than 0",
-    }
-  ),
-  sizes:z.array(z.string()).refine((value) => value.some((item) => item), {
+  price: z.coerce.number().refine((val) => !isNaN(val) && val > 0, {
+    message: "Price must be a valid integer and greater than 0",
+  }),
+  sizes: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "You have to select at least one size",
   }),
-  images:z.array(z.string()).refine((value) => value.length===5, {
+  images: z.array(z.string()).refine((value) => value.length === 5, {
     message: "You have to add total 5 images",
   }),
-})
+});
 
 //cart item form
 export const cartSchema = z.object({
@@ -60,9 +58,31 @@ export const cartSchema = z.object({
   size: z.string({
     required_error: "Add a size",
   }),
-  quantity:z.coerce.number().refine(
-    (val)=>!isNaN(val) && 11> val > 0,{
-      message: "You can not buy more than 10",
-    }
-  ),
+  quantity: z.coerce.number().refine((val) => !isNaN(val) && 11 > val > 0, {
+    message: "You can not buy more than 10",
+  }),
+});
+
+//checkout form
+export const checkoutSchema = z.object({
+  fullName: z.string({
+    required_error: "Name is required",
+  }),
+  email: z
+    .string({
+      required_error: "Email is required",
+    })
+    .email({
+      message: "Not a valid email",
+    }),
+  phoneNumber: z
+    .string({ required_error: "Phone number is required" })
+
+    .regex(phoneRegex, {
+      message: "Must e a bangladeshi number",
+    }),
+  address: z.string({ required_error: "Address is required" }),
+  city: z.string({ required_error: "City is required" }),
+  houseDetails: z.string({ required_error: "House details is required" }),
+  paymentMethod: z.string({ required_error: "Payment Method  is required" }),
 });

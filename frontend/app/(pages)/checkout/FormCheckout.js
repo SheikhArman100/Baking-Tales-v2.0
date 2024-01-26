@@ -1,8 +1,9 @@
+"use client"
 import { AlertTriangle, PlusCircle } from "lucide-react";
 
 const FormCheckout = () => {
   return (
-    <form className=" py-4 px-4 w-full  flex flex-col lg:col-span-2 xl:col-span-3">
+    <div className=" py-4 px-4 w-full  flex flex-col lg:col-span-2 xl:col-span-3 text-white">
       <section>
         <h6 className="text-base font-semibold text-white text-left">
           Shipping Details
@@ -174,7 +175,7 @@ const FormCheckout = () => {
           </p>
         </div>
       </section>
-    </form>
+    </div>
   );
 };
 

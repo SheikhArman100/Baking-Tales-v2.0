@@ -13,9 +13,9 @@ const verifyJWT = (req, res, next) => {
         status: "failed",
         message: "Invalid access token",
       }); //invalid token
-    req.id = decoded.id,
-    req.email = decoded.email,
-    req.role = decoded.role;
+    (req.id = decoded.id),
+      (req.email = decoded.email),
+      (req.role = decoded.role);
     next();
   });
 };

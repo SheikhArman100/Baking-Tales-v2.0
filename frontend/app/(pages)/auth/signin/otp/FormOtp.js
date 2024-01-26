@@ -43,7 +43,7 @@ const FormOtp = () => {
           onSuccess: (data) => {
             setAccessToken(data.accessToken);
             toast.success(data.message);
-            router.push("/");
+            window.history.go(-2);
           },
           onError: (data) => {
             toast.error(data.response.data.message);
