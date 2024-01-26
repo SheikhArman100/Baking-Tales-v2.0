@@ -71,7 +71,7 @@ model Cart {
   size      String
 }
 
-//working..................................
+
 
 model Order {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
