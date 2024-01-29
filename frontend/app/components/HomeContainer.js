@@ -42,7 +42,7 @@ const HomeContainer = ({ children }) => {
           style={{
             scale,
           }}
-          className="relative h-screen w-full mask [mask-position:center_center,center_top_12rem] md:[mask-position:center_center,center_top_65%] xl:[mask-position:center_center,center_top_71%]   bg-bgColor  flex flex-col md:flex-row md:items-center md:justify-between  items-center px-8 md:px-12 py-6 gap-x-[260px]"
+          className="relative h-screen w-full mask   bg-bgColor  flex flex-col md:flex-row md:items-center md:justify-between  items-center px-8 md:px-12 py-6 gap-x-[260px]"
         >
           <div className=" w-full md:w-1/2  flex flex-col items-center md:items-start md:gap-y-3 md:mt-[4rem] lg:ml-[2rem] xl:ml-[4rem]">
             <div className="flex items-center justify-center gap-x-1">

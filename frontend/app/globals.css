@@ -88,8 +88,21 @@
     mask-repeat: no-repeat;
     mask-size: auto;
 
-    /* mask-position: center center; */
+    mask-position:center center,center top 12rem
   }
+  @media (min-width: 768px) {
+    .mask {
+        
+      mask-position:center center,center top 64%
+    }
+}
+@media(min-width:1400px)  {
+  .mask{
+
+    mask-position:center center,center top 62%
+  }
+}
+
   .overlay {
     filter: blur(0.5px) drop-shadow(0 0 0 #c9c7c7);
   }
