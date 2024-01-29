@@ -125,9 +125,9 @@ const confirmOrder = async (req, res) => {
         currency: "BDT",
         tran_id: transactionId, // use unique tran_id for each api call
         success_url: `${ORIGIN}/checkout/success?transId=${transactionId}`,
-        fail_url: "${ORIGIN}/checkout/failure",
-        cancel_url: "${ORIGIN}/checkout",
-        ipn_url: "${ORIGIN}",
+        fail_url: `${ORIGIN}/checkout/failure`,
+        cancel_url: `${ORIGIN}/checkout`,
+        ipn_url: `${ORIGIN}`,
         shipping_method: "Courier",
         product_name: "Baking Product",
         product_category: "Baking",
