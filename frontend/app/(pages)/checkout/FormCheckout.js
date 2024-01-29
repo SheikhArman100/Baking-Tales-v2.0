@@ -1,7 +1,39 @@
-"use client"
+"use client";
+import { Label } from "@/Components/ui/label.jsx";
+import { RadioGroup, RadioGroupItem } from "@/Components/ui/radio-group.jsx";
+import useAxiosPrivate from "@/hooks/useAxiosPrivate.js";
+import useUserDetails from "@/hooks/useUserDetails.js";
+
+import { useQuery } from "@tanstack/react-query";
 import { AlertTriangle, PlusCircle } from "lucide-react";
+import { Controller, useFormContext } from "react-hook-form";
 
 const FormCheckout = () => {
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext();
+
+  //get the previous user info
+  const { data, isPending, error } = useUserDetails();
+
+  const userInfo = data?.userInfo;
+  if (isPending) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <span className="loading loading-spinner text-warning" />
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <p>Something went wrong</p>
+      </div>
+    );
+  }
+
   return (
     <div className=" py-4 px-4 w-full  flex flex-col lg:col-span-2 xl:col-span-3 text-white">
       <section>
@@ -12,146 +44,154 @@ const FormCheckout = () => {
           {/* full name */}
           <div className="flex flex-col items-start gap-y-2 col-span-2 ">
             <label className="text-sm font-semibold">Full name</label>
+
             <input
               type="text"
+              {...register("fullName")}
+              defaultValue={userInfo?.name || null}
               className="w-full rounded-md border  border-white px-4 shadow-sm text-sm text-white bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
             />
 
-            <p className="text-xs font-semibold text-red-700">
-              *Full name is required
-            </p>
+            {errors.fullName?.message && (
+              <p className="text-xs font-semibold text-red-700 ">
+                *{errors.fullName?.message}
+              </p>
+            )}
           </div>
           {/* email */}
           <div className="flex flex-col items-start gap-y-2 col-span-2 md:col-span-1">
             <label className="text-sm font-semibold">Email</label>
             <input
               type="email"
+              {...register("email")}
+              value={userInfo?.email }
+              
               className="w-full rounded-md border  border-white px-4 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
             />
 
-            <p className="text-xs font-semibold text-red-700">
-              *Email is required
-            </p>
+            {errors.email?.message && (
+              <p className="text-xs font-semibold text-red-700 mt-1">
+                *{errors.email?.message}
+              </p>
+            )}
           </div>
           {/* Phone number */}
           <div className="flex flex-col items-start gap-y-2 col-span-2 md:col-span-1">
             <label className="text-sm font-semibold">Phone number</label>
             <input
               type="tel"
+              {...register("phoneNumber")}
+              defaultValue={userInfo?.phoneNumber || null}
               className="w-full rounded-md border  border-white px-4 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
             />
 
-            <p className="text-xs font-semibold text-red-700">
-              *Phone number is required
-            </p>
+            {errors.phoneNumber?.message && (
+              <p className="text-xs font-semibold text-red-700 mt-1">
+                *{errors.phoneNumber?.message}
+              </p>
+            )}
           </div>
           {/* Shipping Address */}
           <div className="flex flex-col items-start gap-y-2 col-span-2 ">
             <label className="text-sm font-semibold">Shipping Address</label>
             <input
               type="text"
+              {...register("address")}
+              defaultValue={userInfo?.details?.address || null}
               className="w-full rounded-md border  border-white px-4 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
             />
 
-            <p className="text-xs font-semibold text-red-700">
-              *Shipping Address is required
-            </p>
+            {errors.address?.message && (
+              <p className="text-xs font-semibold text-red-700 mt-1">
+                *{errors.address?.message}
+              </p>
+            )}
           </div>
           {/* City */}
           <div className="flex flex-col items-start gap-y-2 col-span-1">
             <label className="text-sm font-semibold">City</label>
             <input
               type="text"
+              {...register("city")}
+              defaultValue={userInfo?.details?.city || null}
               className="w-full rounded-md border  border-white px-4 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
             />
 
-            <p className="text-xs font-semibold text-red-700">
-              *City is required
-            </p>
+            {errors.city?.message && (
+              <p className="text-xs font-semibold text-red-700 mt-1">
+                *{errors.city?.message}
+              </p>
+            )}
           </div>
           {/* House Details */}
           <div className="flex flex-col items-start gap-y-2 col-span-1">
             <label className="text-sm font-semibold">House Details</label>
             <input
               type="text"
+              {...register("houseDetails")}
+              defaultValue={userInfo?.details?.houseDetails || null}
               className="w-full rounded-md border  border-white px-4 shadow-sm text-sm bg-transparent py-3 focus:border focus:border-accentColor focus:outline-0"
             />
 
-            <p className="text-xs font-semibold text-red-700 text-left">
-              *House Details is required
-            </p>
+            {errors.houseDetails?.message && (
+              <p className="text-xs font-semibold text-red-700 mt-1">
+                *{errors.houseDetails?.message}
+              </p>
+            )}
           </div>
         </div>
       </section>
       <section className="mt-4">
-        <h6 className="text-base font-semibold text-white text-left">
+        <Label className="text-base font-semibold text-white text-left">
           Payment Method
-        </h6>
-        <fieldset className=" grid grid-cols-2 gap-x-4 mt-2">
-          <div className=" ">
-            <input
-              type="radio"
-              name="DeliveryOption"
-              value="DeliveryStandard"
-              id="DeliveryStandard"
-              className="peer hidden [&:checked_+_label_svg]:block"
-              checked
-            />
-
-            <label
-              htmlFor="DeliveryStandard"
-              className=" cursor-pointer rounded-lg border-2 border-white bg-white p-3 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-yellow-500 peer-checked:ring-1 peer-checked:ring-yellow-500 h-full w-full flex  items-center justify-center gap-x-1 "
+        </Label>
+        <Controller
+          control={control}
+          name="paymentMethod"
+          render={({ field: { onChange, value } }) => (
+            <RadioGroup
+              className="grid grid-cols-2 gap-x-4 mt-2"
+              onValueChange={onChange}
+              defaultValue={value}
+              
             >
-              <p className="text-black text-sm font-bold capitalize">
-                Cash on delivery
-              </p>
-
-              <svg
-                className="hidden h-5 w-5 text-yellow-500"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
+              <div>
+                <RadioGroupItem
+                  value="Cash on"
+                  id="cash on delivery"
+                  className="peer sr-only"
                 />
-              </svg>
-            </label>
-          </div>
-
-          <div className="">
-            <input
-              type="radio"
-              name="DeliveryOption"
-              value="DeliveryPriority"
-              id="DeliveryPriority"
-              className="peer hidden [&:checked_+_label_svg]:block"
-            />
-
-            <label
-              htmlFor="DeliveryPriority"
-              className="cursor-pointer rounded-lg border-2 border-white bg-white p-3 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-yellow-500 peer-checked:ring-1 peer-checked:ring-yellow-500  h-full w-full flex  items-center justify-center gap-x-1"
-            >
-              <p className="text-black text-sm font-bold capitalize">Bkash</p>
-
-              <svg
-                className="hidden h-5 w-5 text-yellow-500"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
+                <Label
+                  htmlFor="cash on delivery"
+                  className="flex flex-col items-center justify-between rounded-md border-4 border-transparent bg-white text-black font2 p-4  peer-data-[state=checked]:border-yellow-500 peer-data-[state=checked]:bg-white [&:has([data-state=checked])]:border-yellow-500"
+                >
+                  Cash on Delivery
+                </Label>
+              </div>
+              <div>
+                <RadioGroupItem
+                  value="Payment Gateway"
+                  id="Payment gateway"
+                  className="peer sr-only"
                 />
-              </svg>
-            </label>
-          </div>
-        </fieldset>
+                <Label
+                  htmlFor="Payment gateway"
+                  className="flex flex-col items-center justify-between rounded-md border-4 border-transparent bg-white text-black font2 p-4  peer-data-[state=checked]:border-yellow-500 peer-data-[state=checked]:bg-white [&:has([data-state=checked])]:border-yellow-500"
+                >
+                  Payment Gateway
+                </Label>
+              </div>
+            </RadioGroup>
+          )}
+        />
+
+        {errors.paymentMethod?.message && (
+          <p className="text-xs font-semibold text-red-700 mt-1">
+            *{errors.paymentMethod?.message}
+          </p>
+        )}
       </section>
+
       <section>
         <h6 className="text-base font-semibold text-white text-left mt-3">
           More Details

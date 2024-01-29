@@ -17,7 +17,7 @@ model User {
   phoneNumber  String     @unique
   isVerified   Boolean    @default(false)
   image        String?
-  details      Json?     //address,city,houseDetails
+  details      Json? //address,city,houseDetails
   role         Role       @default(USER)
   refreshToken String?    @unique
   wishlist     Wishlist[]
@@ -46,10 +46,9 @@ model Product {
   images      String[]
   wishlist    Wishlist[]
   carts       Cart[]
-
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
-  orderItem orderItem[]
+  orderItem OrderItem[]
 }
 
 model Wishlist {
@@ -71,20 +70,20 @@ model Cart {
   size      String
 }
 
-
-
 model Order {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  user          User        @relation(fields: [userId], references: [id])
+  user          User       @relation(fields: [userId], references: [id])
   userId        String      @db.ObjectId
-  orderItem     orderItem[]
+  orderItem     OrderItem[]
   totalAmount   Int
   paymentMethod String
-  status        Status
+  paymentStatus Boolean
+  payment       Payment?
+  status        Status      @default(Pending)
   createdAt     DateTime    @default(now())
 }
 
-model orderItem {
+model OrderItem {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
   orderId   String  @db.ObjectId
   order     Order   @relation(fields: [orderId], references: [id])
@@ -92,6 +91,18 @@ model orderItem {
   product   Product @relation(fields: [productId], references: [id])
   quantity  Int
   price     Int
+  flavor    String
+  size      String
+}
+
+model Payment {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  transactionId String
+  paidAt        DateTime? @default(now())
+  amount        Int
+  deatils       Json?
+  order         Order     @relation(fields: [orderId], references: [id])
+  orderId       String    @unique @db.ObjectId
 }
 
 enum Role {
@@ -101,7 +112,8 @@ enum Role {
 }
 
 enum Status {
-  Processing
+  Pending
+  InProgress
+  ReadyForPickup
   Completed
-  Cancelled
 }

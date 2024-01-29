@@ -44,11 +44,11 @@ const NavBar = () => {
             <Heart className="h-[1.2rem] aspect-square" />
           </IconCircleBorder>
         </Link>
-        <Link href="/order">
+        {/* <Link href="/order">
           <IconCircleBorder>
             <ShoppingBag className="h-[1.2rem] aspect-square" />
           </IconCircleBorder>
-        </Link>
+        </Link> */}
         <div className="w-[0.01rem] h-[1.2rem] bg-textColor" />
 
         <CartButton />

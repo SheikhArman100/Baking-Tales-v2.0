@@ -69,20 +69,17 @@ export const checkoutSchema = z.object({
     required_error: "Name is required",
   }),
   email: z
-    .string({
-      required_error: "Email is required",
-    })
+    .string().nonempty("Email is required")
     .email({
       message: "Not a valid email",
     }),
   phoneNumber: z
-    .string({ required_error: "Phone number is required" })
-
+    .string().nonempty("Phone number is required")
     .regex(phoneRegex, {
-      message: "Must e a bangladeshi number",
+      message: "Must be a bangladeshi number",
     }),
-  address: z.string({ required_error: "Address is required" }),
-  city: z.string({ required_error: "City is required" }),
-  houseDetails: z.string({ required_error: "House details is required" }),
+  address: z.string().nonempty("Address is required"),
+  city: z.string().nonempty("City is required"),
+  houseDetails: z.string().nonempty("House details is required"),
   paymentMethod: z.string({ required_error: "Payment Method  is required" }),
 });

@@ -28,11 +28,11 @@ app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ limit: '20mb',extended: false })); //why false?
 
 // Cross Origin Resource Sharing
+const ORIGIN=process.env.ORIGIN
 app.use(
   cors({
     credentials: true,
-    origin: ["https://baking-tales-v2.vercel.app",
-  "http://localhost:3000"],//!write frontend route here
+    origin: [ORIGIN],//!write frontend route here
   })
 );
 
