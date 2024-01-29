@@ -57,7 +57,7 @@ const Checkout = () => {
       {
         onSuccess: (data) => {
           toast.success(data.message);
-          console.log(data);
+          
         },
         onError: (data) => {
           toast.error(data.response.data.message);

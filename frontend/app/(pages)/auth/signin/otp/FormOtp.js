@@ -4,7 +4,7 @@ import { axiosPublic } from "@/libs/axios/config";
 import { otpSchema } from "@/libs/zod_schema";
 import { setAccessToken } from "@/libs/zustand/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -13,6 +13,7 @@ const FormOtp = () => {
   const router = useRouter();
   const linkParam = useSearchParams();
   const email = linkParam.get("email");
+  const queryClient=useQueryClient()
 
   //react-hook-form
   const {
@@ -66,6 +67,7 @@ const FormOtp = () => {
     },
     onSuccess: () => {
       reset();
+      return queryClient.invalidateQueries(["auth","check"]);
     },
   });
 

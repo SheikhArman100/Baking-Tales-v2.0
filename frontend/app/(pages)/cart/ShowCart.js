@@ -67,13 +67,13 @@ const ShowCart = () => {
         </div>
         <div className="flex justify-between mt-2">
           <p className="text-base font-semibold">Total</p>
-          <span className="text-base font-medium">${totalAmount+10}</span>
+          <span className="text-base font-medium">${totalAmount-10}</span>
         </div>
         <Button className="mt-6 w-full " href="/checkout">
           <Button.Border1 className="bg-yellow-600" />
           <Button.Border2 className="bg-yellow-600" />
           <Button.Title className="text-base font-bold">
-            Add to cart
+            Add to checkout
           </Button.Title>
           <Button.Icon>
             <Plus size={28} className="stroke-white" />

@@ -5,7 +5,7 @@ import { otpSchema } from "@/libs/zod_schema";
 import { setAccessToken } from "@/libs/zustand/authStore";
 import { useSignupStore } from "@/libs/zustand/signupStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 const FormOtp = () => {
   const router = useRouter();
   const { name, email, phoneNumber } = useSignupStore(); //zustand store
+  const queryClient=useQueryClient()
 
   //react-hook-form
   const {
@@ -76,6 +77,7 @@ const FormOtp = () => {
     },
     onSuccess: () => {
       reset();
+      return queryClient.invalidateQueries(["auth","check"]);
     },
   });
 

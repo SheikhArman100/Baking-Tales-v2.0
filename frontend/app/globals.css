@@ -88,7 +88,7 @@
     mask-repeat: no-repeat;
     mask-size: auto;
 
-    mask-position:center center,center top 12rem
+    mask-position:center center,center top 14rem
   }
   @media (min-width: 768px) {
     .mask {

@@ -15,8 +15,15 @@ const getAllOrders = async (req, res) => {
         userId: userId,
       },
       include: {
-        orderItem: true,
+        orderItem: {
+          include: {
+            product: true,
+          },
+        },
         payment:true
+      },
+      orderBy: {
+        createdAt: 'desc', 
       },
     });
     return res.status(200).json({

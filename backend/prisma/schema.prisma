@@ -116,4 +116,5 @@ enum Status {
   InProgress
   ReadyForPickup
   Completed
+  Cancelled
 }
