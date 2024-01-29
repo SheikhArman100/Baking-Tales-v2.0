@@ -81,7 +81,7 @@ const HomeContainer = ({ children }) => {
                   id="text-path"
                   href="#curve"
                   startOffset="25"
-                  className="fill-accentColor text-4xl font-bold"
+                  className="fill-accentColor text-[2rem] font-bold"
                 >
                   Happiness Starts Here
                 </textPath>

@@ -17,7 +17,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        bgColor: "rgb(38, 4, 3)",
+        bgColor: "#32170F",//rgb(38, 4, 3)
         textColor: "white",
         accentColor: "rgb(255, 201, 153)",
         accentColor2: "rgba(250,243,225,1)",

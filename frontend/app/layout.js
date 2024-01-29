@@ -1,14 +1,18 @@
 import QueryProvider from "@/libs/react-query/QueryProvider";
 import ToastifyComponent from "@/libs/react-toastify/ToastifyComponent";
-import { Dancing_Script, Italiana, Playfair_Display, Roboto_Condensed } from "next/font/google";
+import { Dancing_Script, Italiana, Playfair_Display, Poppins, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 
 
-const italiana = Italiana({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-italiana",
-});
+// const italiana = Italiana({
+//   subsets: ["latin"],
+//   weight: "400",
+//   variable: "--font-italiana",
+// });
+const poppins=Poppins({
+  subsets:["latin"],
+  weight:["100", "200", "300", ],
+})
 const roboto = Roboto_Condensed({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -25,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${italiana.className} `}
+        className={`${roboto.variable} ${poppins.className} `}
       >
         <QueryProvider>
           {children}

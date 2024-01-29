@@ -6,7 +6,7 @@ const useWishlist = () => {
   return useQuery({
     queryKey: ["wishlist"],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // await new Promise((resolve) => setTimeout(resolve, 500));
       const response = await axiosPrivate.get("wishlist", {
         withCredentials: true,
       });
