@@ -102,6 +102,11 @@ const FormOtp = () => {
       }
     );
   };
+  const handleInput = (currentInput, nextInput) => {
+    if (currentInput.value.length === 1) {
+      nextInput.focus();
+    }
+  };
   return (
     <form
       autoComplete="off"
@@ -116,36 +121,48 @@ const FormOtp = () => {
           type="text"
           maxLength="1"
           {...register("otp1")}
+          id="otp1"
+          onInput={() => handleInput(document.getElementById("otp1"), document.getElementById("otp2"))}
           className="bg-transparent h-12 aspect-square rounded-full text-center text-3xl font-semibold uppercase border border-accentColor focus:outline-0 focus:border-2 focus:border-accentColor"
         />
         <input
           type="text"
           maxLength="1"
           {...register("otp2")}
+          id="otp2"
+          onInput={() => handleInput(document.getElementById("otp2"), document.getElementById("otp3"))}
           className="bg-transparent h-12 aspect-square rounded-full text-center text-3xl font-semibold uppercase border border-accentColor focus:outline-0 focus:border-2 focus:border-accentColor"
         />
         <input
           type="text"
           maxLength="1"
           {...register("otp3")}
+          id="otp3"
+          onInput={() => handleInput(document.getElementById("otp3"), document.getElementById("otp4"))}
           className="bg-transparent h-12 aspect-square rounded-full text-center text-3xl font-semibold uppercase border border-accentColor focus:outline-0 focus:border-2 focus:border-accentColor"
         />
         <input
           type="text"
           maxLength="1"
           {...register("otp4")}
+          id="otp4"
+          onInput={() => handleInput(document.getElementById("otp4"), document.getElementById("otp5"))}
           className="bg-transparent h-12 aspect-square rounded-full text-center text-3xl font-semibold uppercase border border-accentColor focus:outline-0 focus:border-2 focus:border-accentColor"
         />
         <input
           type="text"
           maxLength="1"
           {...register("otp5")}
+          id="otp5"
+          onInput={() => handleInput(document.getElementById("otp5"), document.getElementById("otp6"))}
           className="bg-transparent h-12 aspect-square rounded-full text-center text-3xl font-semibold uppercase border border-accentColor focus:outline-0 focus:border-2 focus:border-accentColor"
         />
         <input
           type="text"
           maxLength="1"
           {...register("otp6")}
+          id="otp6"
+          
           className="bg-transparent h-12 aspect-square rounded-full text-center text-3xl font-semibold uppercase border border-accentColor focus:outline-0 focus:border-2 focus:border-accentColor"
         />
       </div>
