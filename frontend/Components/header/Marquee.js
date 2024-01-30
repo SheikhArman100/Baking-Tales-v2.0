@@ -6,7 +6,7 @@ import React from 'react'
 
 const Marquee = () => {
   return (
-    <motion.section variants={marqueeContainer} initial="initial" animate="animate" className="origin-left h-8 bg-yellow-500 overflow-hidden uppercase flex items-center">
+    <motion.section variants={marqueeContainer} initial="initial" animate="animate" className="origin-left h-8 bg-[#fffcc7] overflow-hidden uppercase flex items-center">
       <motion.div variants={marqueeAD} initial="initial" animate="animate" className="flex items-center w-fit flex-auto">
         {[...Array(20).keys()].map((i) => (
           <motion.div variants={marqueeText}  animate="animate" key={i} className="flex items-center gap-x-2 flex-shrink-0 px-2">

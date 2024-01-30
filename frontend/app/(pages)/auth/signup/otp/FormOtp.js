@@ -158,9 +158,9 @@ const FormOtp = () => {
         <p className="text-xs font-semibold text-red-700">*can not be empty</p>
       ) : null}
       <Button className="w-[80%] h-[3.5rem] mt-8">
-        <Button.Border1 className="bg-yellow-600 z-[2]" />
-        <Button.Border2 className="bg-yellow-600 z-[1]" />
-        <Button.Title className="font-bold text-base">
+        <Button.Border1 className="bg-[#fffcc7] border-black z-[1]" />
+        <Button.Border2 className="bg-[#fffcc7] border-black z-[2]" />
+        <Button.Title className="font-bold text-base text-black">
           {verifyOtpMutation.isPending || signupMutation.isPending ? (
             <span className="loading loading-dots loading-sm"></span>
           ) : (

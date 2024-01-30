@@ -85,11 +85,11 @@ const FormCart = ({ product, productId }) => {
         <Quantity />
         <div className=" flex items-center justify-center gap-x-4 mt-4">
           <Button className="lg:h-16 lg:w-48" type="submit">
-            <Button.Border1 className="bg-yellow-600" />
-            <Button.Border2 className="bg-yellow-600" />
-            <Button.Title className="font-bold">Add to cart</Button.Title>
+            <Button.Border1 className="bg-[#fffcc7] border-black z-[1]" />
+            <Button.Border2 className="bg-[#fffcc7] border-black z-[2]" />
+            <Button.Title className="font-bold text-black">Add to cart</Button.Title>
             <Button.Icon>
-              <Plus className="stroke-white" />
+              <Plus className="stroke-black" />
             </Button.Icon>
           </Button>
           <AddToWishList productId={productId} />

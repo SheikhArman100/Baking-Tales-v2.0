@@ -70,13 +70,13 @@ const ShowCart = () => {
           <span className="text-base font-medium">${totalAmount-10}</span>
         </div>
         <Button className="mt-6 w-full " href="/checkout">
-          <Button.Border1 className="bg-yellow-600" />
-          <Button.Border2 className="bg-yellow-600" />
-          <Button.Title className="text-base font-bold">
+          <Button.Border1 className="bg-[#fffcc7] border-black z-[1]" />
+          <Button.Border2 className="bg-[#fffcc7] border-black z-[2]" />
+          <Button.Title className="text-base font-bold text-black">
             Add to checkout
           </Button.Title>
           <Button.Icon>
-            <Plus size={28} className="stroke-white" />
+            <Plus size={28} className="stroke-black" />
           </Button.Icon>
         </Button>
       </section>

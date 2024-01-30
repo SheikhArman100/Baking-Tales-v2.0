@@ -5,7 +5,7 @@ import FormSignup from "./FormSignup";
 
 const Signup = () => {
   return (
-    <article className="w-full h-full mt-4  text-accentColor2 border-t flex flex-col items-center lg:justify-center   md:pt-[7rem] md:pb-8 px-8 lg:px-[2rem] xl:px-[4rem] md:grid md:grid-cols-2 ">
+    <article className="w-full min-h-screen mt-4  text-accentColor2 border-t flex flex-col items-center justify-center   md:pt-[7rem] md:pb-8 px-8 lg:px-[2rem] xl:px-[4rem] md:grid md:grid-cols-2 ">
       <section className="bg-black hidden md:block w-full h-full lg:h-[80%]">
         <div className="w-full h-full  relative">
           <Image
